@@ -182,10 +182,10 @@ contract ChirpLaunchTest is Test {
 
     function _mine(address predictedFactory, address bookPredicted, address poolManager)
         internal
-        view
+        pure
         returns (bytes32 salt, address hooked)
     {
-        bytes memory init = abi.encodePacked(vm.getCode("ChirpHook.sol:ChirpHook"), abi.encode(bookPredicted, poolManager));
+        bytes memory init = abi.encodePacked(type(ChirpHook).creationCode, abi.encode(bookPredicted, poolManager));
         bytes32 initHash = keccak256(init);
         for (uint256 i; i < 200_000; i++) {
             salt = bytes32(i);

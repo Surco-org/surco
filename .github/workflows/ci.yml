@@ -15,7 +15,7 @@ jobs:
           submodules: recursive
       - uses: foundry-rs/foundry-toolchain@v1
         with:
-          version: stable
+          version: v1.5.1
       - name: Test Chirp contracts
         working-directory: chirp
         run: forge test -vv
