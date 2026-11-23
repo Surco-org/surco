@@ -22,6 +22,22 @@ export function formatVeCell(coin, stakeSnap) {
   return { main: `${fmtTokenAmount(String(w))} veChirp`, sub: `${pctStr} gauge` }
 }
 
+/** Aggregates live protocol-wide Silo Pinto and locked CHIRP for the landing hero strip. */
+export function computeProtocolTotals(chirpEntry, launcherCoins, stakeSnap, pintoUsd) {
+  const chirpSilo = Number(chirpEntry?.siloPintoNum || 0)
+  const collectiveSilo = Number(stakeSnap?.silo?.siloPintoNum || 0)
+  const launcherSilo = (launcherCoins || []).reduce((acc, c) => acc + Number(c?.siloPintoNum || 0), 0)
+  const totalSiloPinto = chirpSilo + collectiveSilo + launcherSilo
+  const lockedRaw = stakeSnap?.silo?.totalLockedChirp || "0"
+  const lockedChirpStr = `${fmtTokenAmount(String(lockedRaw))} CHIRP`
+  return {
+    totalSiloPinto,
+    totalSiloUsd: pintoUsd > 0 ? totalSiloPinto * pintoUsd : 0,
+    collectiveSilo,
+    lockedChirpStr,
+  }
+}
+
 /** Builds a coins-table entry for flagship CHIRP from the live /api/chirp snapshot. */
 export function buildChirpEntry(snap) {
   const pintoUsd = Number(snap?.pintoUsd || 0)
@@ -81,6 +97,7 @@ function boot() {
   }
 
   const tbody = document.querySelector("#coins-body")
+  const mobileWrap = document.querySelector("#coins-mobile")
   const metaEl = document.querySelector("#coins-meta")
   const moreBtn = document.querySelector("#coins-more")
   const searchInput = document.querySelector("#coins-search")
@@ -109,8 +126,105 @@ function boot() {
     return createAvatarEl(c.imageUri, c.coin, c.symbol)
   }
 
+  function makeModeBadge(c) {
+    const badge = document.createElement("span")
+    if (c.mode === "flagship") {
+      badge.className = "l-badge flagship"
+      badge.textContent = "Flagship"
+    } else {
+      badge.className = `l-badge ${c.mode === "redeem" ? "redeem" : ""}`.trim()
+      badge.textContent = c.mode === "redeem" ? "Redeem" : "Burn"
+    }
+    return badge
+  }
+
+  function updateHeroStats(chirpEntry, launcherCoins, pintoUsd) {
+    const totals = computeProtocolTotals(chirpEntry, launcherCoins, stakeSnap, pintoUsd)
+    document.querySelectorAll('[data-stat="total-silo"]').forEach((el) => {
+      el.textContent = totals.totalSiloPinto > 0 ? fmtPinto(totals.totalSiloPinto) : "0 Pinto"
+    })
+    document.querySelectorAll('[data-stat="total-silo-usd"]').forEach((el) => {
+      el.textContent = totals.totalSiloUsd > 0 ? `${fmtUsd(totals.totalSiloUsd)} in Silos` : "Permanent principal"
+    })
+    document.querySelectorAll('[data-stat="locked-chirp"]').forEach((el) => {
+      el.textContent = totals.lockedChirpStr
+    })
+  }
+
+  function renderMobileCards(coins) {
+    if (!mobileWrap) return
+    mobileWrap.textContent = ""
+    if (!coins.length) {
+      const empty = document.createElement("div")
+      empty.className = "l-empty"
+      empty.textContent = query ? "No coins match that search." : "No coins launched on this factory yet."
+      mobileWrap.appendChild(empty)
+      return
+    }
+
+    for (const c of coins) {
+      const dest = c.href || `/coin?a=${encodeURIComponent(c.coin)}`
+      const card = document.createElement("article")
+      card.className = c.mode === "flagship" ? "l-coin-card flagship" : "l-coin-card"
+
+      const top = document.createElement("div")
+      top.className = "l-coin-card-top"
+      const cell = document.createElement("div")
+      cell.className = "l-coin-cell"
+      cell.appendChild(createCoinAvatar(c))
+      const names = document.createElement("div")
+      const nEl = document.createElement("div")
+      nEl.className = "l-coin-name"
+      nEl.textContent = c.name || "Unnamed"
+      const sEl = document.createElement("div")
+      sEl.className = "l-coin-sym"
+      sEl.textContent = `${c.symbol || "—"} · ${relTime(c.launchedAt)}`
+      names.append(nEl, sEl)
+      cell.appendChild(names)
+      top.append(cell, makeModeBadge(c))
+
+      const stats = document.createElement("div")
+      stats.className = "l-coin-card-stats"
+      const veInfo = formatVeCell(c, stakeSnap)
+      const fdvVal = c.fdvUsd > 0 ? fmtUsd(c.fdvUsd) : c.fdvWeth > 0 ? fmtWeth(c.fdvWeth) : "—"
+      const priceVal = c.priceUsd > 0 ? fmtUsd(c.priceUsd) : c.priceWeth > 0 ? fmtWeth(c.priceWeth) : "One-sided"
+      const pintoVal = c.siloPintoNum > 0 ? fmtPinto(c.siloPintoNum).replace(" Pinto", "") : "0"
+      const pintoSub = c.siloPintoUsd > 0 ? fmtUsd(c.siloPintoUsd) : "in Silo"
+      const veVal = veInfo.main.replace(" veChirp", "").replace(" locked", "")
+      const cols = [
+        { k: "FDV", v: fdvVal, s: priceVal },
+        { k: "Silo Pinto", v: pintoVal, s: pintoSub },
+        { k: "veChirp", v: veVal, s: veInfo.sub },
+      ]
+      for (const col of cols) {
+        const box = document.createElement("div")
+        box.className = "l-coin-card-stat"
+        const k = document.createElement("span")
+        k.className = "k"
+        k.textContent = col.k
+        const v = document.createElement("span")
+        v.className = "v"
+        v.textContent = col.v
+        const s = document.createElement("span")
+        s.className = "s"
+        s.textContent = col.s
+        box.append(k, v, s)
+        stats.appendChild(box)
+      }
+
+      const cta = document.createElement("a")
+      cta.className = `btn ${c.mode === "flagship" ? "btn-primary" : "btn-ghost"} l-btn-sm l-coin-card-cta`
+      cta.href = dest
+      cta.textContent = c.mode === "flagship" ? `Buy ${c.symbol || "CHIRP"} →` : `Trade ${c.symbol || "coin"} →`
+
+      card.append(top, stats, cta)
+      mobileWrap.appendChild(card)
+    }
+  }
+
   function renderRows(coins) {
     tbody.textContent = ""
+    renderMobileCards(coins)
     if (!coins.length) {
       const tr = document.createElement("tr")
       const td = document.createElement("td")
@@ -130,7 +244,10 @@ function boot() {
       const go = () => {
         window.location.href = dest
       }
-      tr.addEventListener("click", go)
+      tr.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return
+        go()
+      })
       tr.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
@@ -156,15 +273,7 @@ function boot() {
 
       // Mode column
       const tdMode = document.createElement("td")
-      const badge = document.createElement("span")
-      if (c.mode === "flagship") {
-        badge.className = "l-badge flagship"
-        badge.textContent = "Flagship"
-      } else {
-        badge.className = `l-badge ${c.mode === "redeem" ? "redeem" : ""}`.trim()
-        badge.textContent = c.mode === "redeem" ? "Redeem" : "Burn"
-      }
-      tdMode.appendChild(badge)
+      tdMode.appendChild(makeModeBadge(c))
 
       // Price / FDV
       const tdPrice = document.createElement("td")
@@ -174,21 +283,6 @@ function boot() {
       fdvSub.className = "l-sub"
       fdvSub.textContent = c.fdvUsd > 0 ? `FDV ${fmtUsd(c.fdvUsd)}` : c.fdvWeth > 0 ? `FDV ${fmtWeth(c.fdvWeth)}` : "One-sided book"
       tdPrice.appendChild(fdvSub)
-
-      // Volume
-      const tdVol = document.createElement("td")
-      tdVol.className = "l-num"
-      if (c.isAllTimeVol) {
-        tdVol.textContent = c.vol24hUsd > 0 ? fmtUsd(c.vol24hUsd) : c.volPinto > 0 ? fmtPinto(c.volPinto) : "—"
-      } else {
-        tdVol.textContent = c.vol24hUsd > 0 ? fmtUsd(c.vol24hUsd) : fmtWeth(c.vol24hWeth)
-      }
-      const trSub = document.createElement("span")
-      trSub.className = "l-sub"
-      trSub.textContent = c.isAllTimeVol
-        ? `${c.trades24h} total trade${c.trades24h === 1 ? "" : "s"}`
-        : `${c.trades24h} trade${c.trades24h === 1 ? "" : "s"}`
-      tdVol.appendChild(trSub)
 
       // Silo Pinto
       const tdPinto = document.createElement("td")
@@ -214,7 +308,16 @@ function boot() {
       tdTime.className = "l-num"
       tdTime.textContent = relTime(c.launchedAt)
 
-      tr.append(tdCoin, tdMode, tdPrice, tdVol, tdPinto, tdVe, tdTime)
+      // Action button
+      const tdAct = document.createElement("td")
+      tdAct.className = "l-act-cell"
+      const actLink = document.createElement("a")
+      actLink.className = `btn ${c.mode === "flagship" ? "btn-primary" : "btn-ghost"} l-btn-sm`
+      actLink.href = dest
+      actLink.textContent = c.mode === "flagship" ? "Buy →" : "Trade →"
+      tdAct.appendChild(actLink)
+
+      tr.append(tdCoin, tdMode, tdPrice, tdPinto, tdVe, tdTime, tdAct)
       tbody.appendChild(tr)
     }
   }
@@ -249,26 +352,40 @@ function boot() {
       loaded = append ? [...loaded, ...batch] : batch
       offset = loaded.length
 
+      const chirpEntry = buildChirpEntry(chirpSnap)
+      const pintoUsd = data.pintoUsd > 0 ? data.pintoUsd : Number(chirpSnap?.pintoUsd || 0)
+      if (!query) updateHeroStats(chirpEntry, loaded, pintoUsd)
+
       const includeChirp = matchesChirpQuery(query)
-      const rows = includeChirp ? [buildChirpEntry(chirpSnap), ...loaded] : loaded
+      const rows = includeChirp ? [chirpEntry, ...loaded] : loaded
       renderRows(rows)
 
       if (metaEl) {
         const displayTotal = total + (includeChirp ? 1 : 0)
-        const pintoUsd = data.pintoUsd > 0 ? data.pintoUsd : Number(chirpSnap?.pintoUsd || 0)
         const ref = pintoUsd > 0 ? ` · Pinto ${fmtUsd(pintoUsd)}` : ""
-        metaEl.textContent = `Showing ${rows.length} of ${displayTotal} coin${displayTotal === 1 ? "" : "s"}${ref}`
+        const csNum = Number(stakeSnap?.silo?.siloPintoNum || 0)
+        const csRef = csNum > 0 ? ` · Collective Silo ${fmtPinto(csNum)}` : ""
+        metaEl.textContent = `Showing ${rows.length} of ${displayTotal} coin${displayTotal === 1 ? "" : "s"}${ref}${csRef}`
       }
       if (moreBtn) moreBtn.hidden = loaded.length >= total
     } catch {
       if (mine !== reqId) return
       // Even if launcher API fails, still render flagship Chirp when query matches.
       if (matchesChirpQuery(query)) {
-        renderRows([buildChirpEntry(chirpSnap)])
+        const chirpEntry = buildChirpEntry(chirpSnap)
+        if (!query) updateHeroStats(chirpEntry, [], Number(chirpSnap?.pintoUsd || 0))
+        renderRows([chirpEntry])
         if (metaEl) metaEl.textContent = "Showing flagship Chirp · launcher coins temporarily unavailable."
         return
       }
       tbody.textContent = ""
+      if (mobileWrap) {
+        mobileWrap.textContent = ""
+        const empty = document.createElement("div")
+        empty.className = "l-empty"
+        empty.textContent = "Could not load coins right now. Try refreshing in a moment."
+        mobileWrap.appendChild(empty)
+      }
       const tr = document.createElement("tr")
       const td = document.createElement("td")
       td.colSpan = 7

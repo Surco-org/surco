@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs"
 import test from "node:test"
 import { decodeAbiParameters, decodeFunctionData, parseAbiParameters } from "viem"
 import { HOOK, UNIVERSAL_ROUTER_ABI, WETH } from "./launcher-config.js"
-import { buildChirpEntry, formatVeCell, matchesChirpQuery } from "./coins-page.js"
+import { buildChirpEntry, computeProtocolTotals, formatVeCell, matchesChirpQuery } from "./coins-page.js"
 import {
   ADDRESS_MSG_SENDER,
   ADDRESS_THIS,
@@ -152,6 +152,16 @@ test("buildChirpEntry formats flagship Chirp row pointing to /chirp and filters 
   const chirpVe = formatVeCell({ mode: "flagship" }, snap)
   assert.match(chirpVe.main, /locked/)
   assert.equal(chirpVe.sub, "54.795 total veChirp")
+
+  const totals = computeProtocolTotals(
+    { siloPintoNum: 1553.6 },
+    [{ siloPintoNum: 3.0 }],
+    { silo: { siloPintoNum: 90, totalLockedChirp: String(10_000n * 10n ** 18n) } },
+    0.02
+  )
+  assert.ok(Math.abs(totals.totalSiloPinto - 1646.6) < 0.01)
+  assert.ok(Math.abs(totals.totalSiloUsd - 32.932) < 0.01)
+  assert.equal(totals.lockedChirpStr, "10,000 CHIRP")
 })
 
 test("all 7 launcher, front & docs HTML pages obey strict CSP (no inline scripts) and have zero duplicate IDs", () => {

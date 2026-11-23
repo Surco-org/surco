@@ -97,17 +97,17 @@
           <input id="coins-search" class="l-search" type="search" placeholder="Search name, symbol, or 0x address…" aria-label="Search coins" />
         </div>
 
-        <div class="l-table-wrap">
+        <div class="l-table-wrap l-table-desktop">
           <table class="l-table">
             <thead>
               <tr>
                 <th>Coin</th>
                 <th>Mode</th>
                 <th class="l-num">Price / FDV</th>
-                <th class="l-num">24h Volume</th>
                 <th class="l-num">Silo Pinto</th>
                 <th class="l-num">veChirp</th>
                 <th class="l-num">Launched</th>
+                <th class="l-act-cell">Action</th>
               </tr>
             </thead>
             <tbody id="coins-body">
@@ -115,6 +115,8 @@
             </tbody>
           </table>
         </div>
+
+        <div class="l-mobile-cards" id="coins-mobile" aria-label="Coins list"></div>
 
         <div class="l-toolbar" style="margin-top: 14px; margin-bottom: 0;">
           <span id="coins-meta" class="l-hint"></span>

@@ -7,8 +7,8 @@ const chirpHtml = readFileSync(new URL("./chirp.html", import.meta.url), "utf8")
 
 test("index.html is the Surco coins front page linking to Chirp, Launch, Stake, Docs, and Pinto", () => {
   assert.match(indexHtml, /Coins backed by Pinto/)
-  assert.match(indexHtml, /A leviathan-free ecosystem built on Pinto and Base/)
-  for (const id of ["coins-body", "coins-search", "coins-meta", "coins-more", "test-banner", "connect", "copyLink"]) {
+  assert.match(indexHtml, /Coins that buy themselves back/)
+  for (const id of ["coins-body", "coins-mobile", "coins-search", "coins-meta", "coins-more", "test-banner", "connect", "copyLink"]) {
     assert.match(indexHtml, new RegExp(`id="${id}"`), id)
   }
   for (const href of ["/chirp", "/launch", "/stake", "/creator", "/pinto", "/docs", "/press", "https://github.com/Surco-org/surco"]) {

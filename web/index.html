@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Surco — Coins backed by Pinto on Base</title>
-    <meta name="description" content="A leviathan-free ecosystem built on Pinto and Base. Browse Chirp and permissionless coins whose trade fees buy Pinto into the Silo. No owner, no pause, no upgrade." />
+    <title>Surco — Coins that buy themselves back forever on Base</title>
+    <meta name="description" content="Launch a Base coin in one transaction. Every swap deposits Pinto into the Silo — and native Silo yield buys the coin back forever. Immutable Uniswap v4, zero admin keys." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Surco" />
-    <meta property="og:title" content="Surco — Coins backed by Pinto on Base" />
-    <meta property="og:description" content="Browse Chirp and permissionless Base coins whose trade fees buy Pinto into the Silo. No owner, no pause, no upgrade." />
+    <meta property="og:title" content="Surco — Coins that buy themselves back forever on Base" />
+    <meta property="og:description" content="Launch or trade Base coins whose swap fees permanently buy Pinto into the Silo. Silo yield buys them back forever. No owner, no pause, no upgrade." />
     <meta property="og:url" content="https://surcofi.com/" />
     <meta property="og:image" content="https://surcofi.com/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@chirpfi" />
-    <meta name="twitter:title" content="Surco — Coins backed by Pinto on Base" />
-    <meta name="twitter:description" content="Browse Chirp and permissionless Base coins whose trade fees buy Pinto into the Silo. No owner, no pause, no upgrade." />
+    <meta name="twitter:title" content="Surco — Coins that buy themselves back forever on Base" />
+    <meta name="twitter:description" content="Launch or trade Base coins whose swap fees permanently buy Pinto into the Silo. Silo yield buys them back forever. No owner, no pause, no upgrade." />
     <meta name="twitter:image" content="https://surcofi.com/og.jpg" />
     <link rel="icon" href="/mark.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,37 +28,16 @@
     <script src="/theme.js"></script>
   </head>
   <body>
-    <div class="scene" aria-hidden="true">
-      <div class="sun-glow"></div>
-      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
-        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
-        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
-        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
-        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
-        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
-        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
-        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
-        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
-          <path d="M120 900 C500 850 940 850 1320 900" />
-          <path d="M40 900 C480 840 960 840 1400 900" />
-          <path d="M260 900 C560 860 900 860 1200 900" />
-        </g>
-      </svg>
-      <div class="grain"></div>
-    </div>
-
     <header class="nav" id="nav">
       <a class="brand" href="/" aria-label="Surco home">
         <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
         <span class="brand-name">Surco</span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
-        <a href="/" aria-current="page">Coins</a>
+        <a href="#coins" aria-current="page">Coins</a>
         <a href="/launch">Launch</a>
         <a href="/stake">Stake</a>
-        <a href="/creator">Creator</a>
         <a href="/chirp">Chirp</a>
-        <a href="/pinto">Pinto</a>
         <a href="/docs">Docs</a>
       </nav>
       <div class="nav-cta">
@@ -67,7 +46,6 @@
           <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
         </button>
         <a class="theme-toggle nav-x" href="https://x.com/chirpfi" target="_blank" rel="noopener" aria-label="Chirp on X" title="@chirpfi on X"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <span class="net-pill">Base</span>
         <button id="connect" class="btn btn-ghost" type="button">Connect wallet</button>
         <a class="btn btn-primary" href="/launch">Launch a coin</a>
       </div>
@@ -75,172 +53,254 @@
     </header>
 
     <main id="top">
-      <section class="hero">
+      <section class="hero l-hero">
         <div class="hero-copy">
-          <h1 class="hero-title"><span class="hero-name">Surco</span><span class="hero-line">A leviathan-free ecosystem built on Pinto and Base</span></h1>
-          <p class="hero-sub">
-            Launch a coin → swap fees buy <b>Pinto</b> into the Silo → Silo yield buys the coin back → more fees into the Silo, forever.
+          <div class="l-hero-eyebrow"><span class="l-live-dot"></span>Live on Base · Uniswap v4 · Zero Admin Keys</div>
+          <h1 class="l-hero-h1">Coins that buy themselves back <em>forever.</em></h1>
+          <p class="l-hero-sub">
+            Launch a Base coin in one transaction. Every swap deposits <b>Pinto</b> into the Silo — and native Silo yield buys the coin back in an unstoppable loop.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="/launch">Launch a coin <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
-            <a class="btn btn-ghost btn-lg" href="/chirp">Buy Chirp</a>
-            <a class="btn btn-ghost btn-lg" href="/stake">Stake Chirp</a>
+          <div class="l-hero-actions">
+            <a class="btn btn-primary btn-lg" href="/launch">Launch a coin in 1 tx <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+            <a class="btn btn-ghost btn-lg" href="/chirp">Buy CHIRP</a>
+          </div>
+          <p class="l-hero-micro">Already hold CHIRP? <a href="/stake">Lock for veChirp to direct yield →</a></p>
+
+          <div class="l-proof-strip" aria-label="Live protocol stats">
+            <div class="l-proof-item">
+              <span class="l-proof-k">Silo Backing</span>
+              <span class="l-proof-v" data-stat="total-silo">—</span>
+              <span class="l-proof-sub" data-stat="total-silo-usd">Permanent principal</span>
+            </div>
+            <div class="l-proof-item">
+              <span class="l-proof-k">Locked CHIRP</span>
+              <span class="l-proof-v" data-stat="locked-chirp">—</span>
+              <span class="l-proof-sub">Steering yield</span>
+            </div>
+            <div class="l-proof-item">
+              <span class="l-proof-k">Admin Keys</span>
+              <span class="l-proof-v">None (0)</span>
+              <span class="l-proof-sub">Basescan verified</span>
+            </div>
+            <div class="l-proof-item">
+              <span class="l-proof-k">Launch Cost</span>
+              <span class="l-proof-v">Gas only</span>
+              <span class="l-proof-sub">Locked v4 pool</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <div class="l-test-banner" id="test-banner" hidden>
-        <span><strong>Test factory on Base</strong> — real ETH, test deployment while we finalize the launcher.</span>
-        <a class="mono" id="test-factory-link" target="_blank" rel="noopener"></a>
+      <div class="l-surface">
+        <div class="l-test-banner" id="test-banner" hidden>
+          <span><strong>Test factory on Base</strong> — real ETH, test deployment while we finalize the launcher.</span>
+          <a class="mono" id="test-factory-link" target="_blank" rel="noopener"></a>
+        </div>
+
+        <section class="l-wrap fw-sec" id="flywheel" aria-label="How the Surco flywheel works">
+          <div class="fw-head">
+            <span class="kicker">The perpetual flywheel</span>
+            <h2>Every trade permanently grows the engine.</h2>
+            <p class="l-lead">No roadmaps, no staking lockups to claim, no team wallets draining LP. Just four immutable on-chain steps that compound forever.</p>
+          </div>
+
+          <div class="fw-grid">
+            <article class="fw-step">
+              <div class="fw-top">
+                <span class="fw-num">STEP 01</span>
+                <span class="fw-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16V4m0 0L3 8m4-4 4 4" />
+                    <path d="M17 8v12m0 0 4-4m-4 4-4-4" />
+                  </svg>
+                </span>
+              </div>
+              <h3>Mint &amp; trade on Base</h3>
+              <p>One tx deploys a fixed-supply coin with locked Uniswap v4 liquidity and an immutable swap fee.</p>
+              <span class="fw-tag">Locked v4 pool</span>
+            </article>
+
+            <div class="fw-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
+            </div>
+
+            <article class="fw-step">
+              <div class="fw-top">
+                <span class="fw-num">STEP 02</span>
+                <span class="fw-ico fw-ico-green" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="6" rx="7" ry="3" />
+                    <path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6" />
+                    <path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6" />
+                  </svg>
+                </span>
+              </div>
+              <h3>Fees fill Pinto's Silo</h3>
+              <p>Swap fees automatically market-buy Pinto and deposit it into the Silo, growing permanent backing.</p>
+              <span class="fw-tag">Permanent backing</span>
+            </article>
+
+            <div class="fw-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
+            </div>
+
+            <article class="fw-step">
+              <div class="fw-top">
+                <span class="fw-num">STEP 03</span>
+                <span class="fw-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2c.5 4.2-3 6.2-3 10a5 5 0 0 0 10 0c0-2.8-1.5-5-3-6.5-.2 1.8-1.2 2.8-2 2.8-.6 0-1.1-.4-1.1-1.3 0-1.4.4-3-.9-5Z" />
+                  </svg>
+                </span>
+              </div>
+              <h3>Silo yield buys it back</h3>
+              <p>Earned Pinto yield buys the coin back to burn supply or raise redeem value — boosted by veChirp gauges.</p>
+              <span class="fw-tag">Buyback &amp; burn</span>
+            </article>
+
+            <div class="fw-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
+            </div>
+
+            <article class="fw-step">
+              <div class="fw-top">
+                <span class="fw-num">STEP 04</span>
+                <span class="fw-ico fw-ico-green" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 0 1-15.36 6.36L3 16" />
+                    <path d="M3 21v-5h5" />
+                    <path d="M3 12a9 9 0 0 1 15.36-6.36L21 8" />
+                    <path d="M21 3v5h-5" />
+                  </svg>
+                </span>
+              </div>
+              <h3>Loops forever</h3>
+              <p>Buybacks trigger fresh swaps and fresh Silo fees. Principal never leaves — the loop spins permissionlessly.</p>
+              <span class="fw-tag">Perpetual loop</span>
+            </article>
+          </div>
+
+          <div class="fw-loop-bar">
+            <span class="fw-loop-pill">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.36 6.36L3 16M3 21v-5h5M3 12a9 9 0 0 1 15.36-6.36L21 8M21 3v5h-5" /></svg>
+              Swap fees → Pinto Silo → Silo yield buys back → Repeats forever
+            </span>
+            <div class="fw-bar-actions">
+              <a class="fw-loop-link" href="/docs">Read mechanics →</a>
+              <a class="btn btn-primary l-btn-sm" href="/launch">Launch your coin →</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="l-wrap l-coins-sec" id="coins" aria-label="Surco coins">
+          <div class="l-head">
+            <div>
+              <span class="kicker">Live on Base</span>
+              <h2>Coins backed by Pinto</h2>
+              <p class="l-lead">Trade flagship <strong>Chirp</strong> or community coins plugged into the Collective Silo.</p>
+            </div>
+            <div class="l-actions">
+              <a class="btn btn-primary" href="/launch">+ Launch a coin</a>
+            </div>
+          </div>
+
+          <div class="l-card">
+            <div class="l-toolbar">
+              <div class="l-pills" role="group" aria-label="Sort coins">
+                <button type="button" class="l-pill sort-btn" data-sort="activity" aria-pressed="true">Active</button>
+                <button type="button" class="l-pill sort-btn" data-sort="backing" aria-pressed="false">Most Pinto</button>
+                <button type="button" class="l-pill sort-btn" data-sort="newest" aria-pressed="false">Newest</button>
+              </div>
+              <input id="coins-search" class="l-search" type="search" placeholder="Search name, symbol, or 0x address…" aria-label="Search coins" />
+            </div>
+
+            <div class="l-table-wrap l-table-desktop">
+              <table class="l-table">
+                <thead>
+                  <tr>
+                    <th>Coin</th>
+                    <th>Mode</th>
+                    <th class="l-num">Price / FDV</th>
+                    <th class="l-num">Silo Pinto</th>
+                    <th class="l-num">veChirp</th>
+                    <th class="l-num">Launched</th>
+                    <th class="l-act-cell">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="coins-body">
+                  <tr><td colspan="7" class="l-empty">Loading coins from Base…</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="l-mobile-cards" id="coins-mobile" aria-label="Coins list"></div>
+
+            <div class="l-toolbar" style="margin-top: 14px; margin-bottom: 0;">
+              <span id="coins-meta" class="l-hint"></span>
+              <button id="coins-more" class="btn btn-ghost" type="button" hidden>Load more</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="l-wrap l-why-sec" aria-label="Why Surco">
+          <div class="fw-head">
+            <span class="kicker">Why Surco</span>
+            <h2>Built to outlast day-one hype.</h2>
+          </div>
+          <div class="l-why-grid">
+            <article class="l-why-card">
+              <span class="fw-tag">Zero rugs</span>
+              <h3>Immutable from block one</h3>
+              <p>Locked Uniswap v4 liquidity, fixed supply, zero admin keys, and verified open-source contracts on Basescan and GitHub.</p>
+            </article>
+            <article class="l-why-card">
+              <span class="fw-tag">Real yield</span>
+              <h3>Backed by Pinto's Silo</h3>
+              <p>Instead of swap fees draining to a deployer wallet, fees buy <strong>Pinto</strong> — Base's decentralized credit stablecoin — earning native yield for endless buybacks.</p>
+            </article>
+            <article class="l-why-card">
+              <span class="fw-tag">Aligned upside</span>
+              <h3>Creator fees + veChirp boosts</h3>
+              <p>Creators can keep up to 20% of swap fees while CHIRP stakers direct Collective Silo yield toward their favorite coins.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="l-wrap l-close-sec" aria-label="Get started">
+          <div class="l-close-grid">
+            <div class="l-close-card accent">
+              <div>
+                <span class="kicker" style="margin-bottom: 6px;">For builders &amp; communities</span>
+                <h3>Launch your own Pinto-backed coin</h3>
+                <p>Deploy a locked Uniswap v4 pool in one transaction. Choose Burn or Redeem mode, set your creator fee, and plug straight into the flywheel.</p>
+              </div>
+              <div class="l-close-actions">
+                <a class="btn btn-primary" href="/launch">Launch a coin →</a>
+                <a class="btn btn-ghost" href="/creator">Creator dashboard</a>
+              </div>
+            </div>
+            <div class="l-close-card">
+              <div>
+                <span class="kicker" style="margin-bottom: 6px;">For holders &amp; stakers</span>
+                <h3>Own the flagship. Steer the yield.</h3>
+                <p>Buy CHIRP and lock it as veChirp to vote which Surco coins receive Collective Silo buybacks every day.</p>
+              </div>
+              <div class="l-close-actions">
+                <a class="btn btn-primary" href="/chirp">Buy CHIRP</a>
+                <a class="btn btn-ghost" href="/stake">Stake for veChirp</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="foot-bot">
+            <span>© 2026 Surco · <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a> · <a href="https://x.com/intent/post?text=Surco%3A%20Base%20coins%20that%20buy%20themselves%20back%20forever%20via%20Pinto%20Silo%20yield.%20%40chirpfi&amp;url=https%3A%2F%2Fsurcofi.com%2F" target="_blank" rel="noopener">Share on X</a> · <button class="foot-copy" id="copyLink" type="button" data-copy="https://surcofi.com/">Copy link</button> · <a href="/chirp">Chirp</a> · <a href="/creator">Creator</a> · <a href="/docs">Docs</a> · <a href="/pinto">What is Pinto</a> · <a href="/press">Press kit</a></span>
+            <span class="foot-disc">Surco contracts on Base have no owner, no pause and no upgrade.</span>
+          </div>
+        </footer>
       </div>
-
-      <section class="l-wrap fw-sec" id="flywheel" aria-label="How the Surco flywheel works">
-        <div class="fw-head">
-          <span class="kicker">The perpetual flywheel</span>
-          <h2>No admin keys. Just a self-feeding Pinto loop.</h2>
-          <p class="l-lead">No fake roadmaps and no upgradeable contracts. Every coin launched on Surco is wired into an automated on-chain loop that turns trade volume into permanent Pinto Silo backing.</p>
-        </div>
-
-        <div class="fw-grid">
-          <article class="fw-step">
-            <div class="fw-top">
-              <span class="fw-num">STEP 01</span>
-              <span class="fw-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 16V4m0 0L3 8m4-4 4 4" />
-                  <path d="M17 8v12m0 0 4-4m-4 4-4-4" />
-                </svg>
-              </span>
-            </div>
-            <h3>Mint &amp; trade on Base</h3>
-            <p>One transaction mints a fixed-supply coin with a locked Uniswap v4 pool. Every buy and sell captures an immutable on-chain swap fee.</p>
-            <span class="fw-tag">Locked v4 pool</span>
-          </article>
-
-          <div class="fw-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
-          </div>
-
-          <article class="fw-step">
-            <div class="fw-top">
-              <span class="fw-num">STEP 02</span>
-              <span class="fw-ico fw-ico-green" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="6" rx="7" ry="3" />
-                  <path d="M5 6v6c0 1.66 3.13 3 7 3s7-1.34 7-3V6" />
-                  <path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6" />
-                </svg>
-              </span>
-            </div>
-            <h3>Fees buy Pinto into the Silo</h3>
-            <p>Captured WETH fees automatically market-buy Pinto and deposit it into Pinto's Silo — growing both the coin's vault and the Collective Silo.</p>
-            <span class="fw-tag">Permanent backing</span>
-          </article>
-
-          <div class="fw-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
-          </div>
-
-          <article class="fw-step">
-            <div class="fw-top">
-              <span class="fw-num">STEP 03</span>
-              <span class="fw-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2c.5 4.2-3 6.2-3 10a5 5 0 0 0 10 0c0-2.8-1.5-5-3-6.5-.2 1.8-1.2 2.8-2 2.8-.6 0-1.1-.4-1.1-1.3 0-1.4.4-3-.9-5Z" />
-                </svg>
-              </span>
-            </div>
-            <h3>Silo yield buys the coin back</h3>
-            <p>When Pinto earns Silo yield, anyone can trigger buybacks — burning supply (or deepening redeem backing), while veChirp directs Collective Silo yield.</p>
-            <span class="fw-tag">Buyback &amp; burn</span>
-          </article>
-
-          <div class="fw-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-5-5 5 5-5 5" /></svg>
-          </div>
-
-          <article class="fw-step">
-            <div class="fw-top">
-              <span class="fw-num">STEP 04</span>
-              <span class="fw-ico fw-ico-green" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 12a9 9 0 0 1-15.36 6.36L3 16" />
-                  <path d="M3 21v-5h5" />
-                  <path d="M3 12a9 9 0 0 1 15.36-6.36L21 8" />
-                  <path d="M21 3v5h-5" />
-                </svg>
-              </span>
-            </div>
-            <h3>Compounds forever</h3>
-            <p>Every buyback drives fresh swaps and fresh fees back into Pinto's Silo. Principal never leaves — the flywheel keeps spinning with zero admin control.</p>
-            <span class="fw-tag">Perpetual loop</span>
-          </article>
-        </div>
-
-        <div class="fw-loop-bar">
-          <span class="fw-loop-pill">
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.36 6.36L3 16M3 21v-5h5M3 12a9 9 0 0 1 15.36-6.36L21 8M21 3v5h-5" /></svg>
-            Swap fees → Pinto Silo → Silo yield buys back → More swap fees → Repeats forever
-          </span>
-          <a class="fw-loop-link" href="/docs">Read full mechanics →</a>
-        </div>
-      </section>
-
-      <section class="l-wrap" id="coins" aria-label="Surco coins">
-        <div class="l-head">
-          <div>
-            <span class="kicker">Surco · Base</span>
-            <h2>Coins backed by Pinto</h2>
-            <p class="l-lead">Browse flagship <strong>Chirp</strong> and permissionless coins whose trade fees buy Pinto into the Silo. No owner, no pause, no upgrade.</p>
-          </div>
-          <div class="l-actions">
-            <a class="btn btn-ghost" href="/docs">Docs</a>
-          </div>
-        </div>
-
-        <div class="l-card">
-          <div class="l-toolbar">
-            <div class="l-pills" role="group" aria-label="Sort coins">
-              <button type="button" class="l-pill sort-btn" data-sort="activity" aria-pressed="true">Active</button>
-              <button type="button" class="l-pill sort-btn" data-sort="backing" aria-pressed="false">Most Pinto</button>
-              <button type="button" class="l-pill sort-btn" data-sort="newest" aria-pressed="false">Newest</button>
-            </div>
-            <input id="coins-search" class="l-search" type="search" placeholder="Search name, symbol, or 0x address…" aria-label="Search coins" />
-          </div>
-
-          <div class="l-table-wrap">
-            <table class="l-table">
-              <thead>
-                <tr>
-                  <th>Coin</th>
-                  <th>Mode</th>
-                  <th class="l-num">Price / FDV</th>
-                  <th class="l-num">Volume</th>
-                  <th class="l-num">Silo Pinto</th>
-                  <th class="l-num">veChirp</th>
-                  <th class="l-num">Launched</th>
-                </tr>
-              </thead>
-              <tbody id="coins-body">
-                <tr><td colspan="7" class="l-empty">Loading coins from Base…</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="l-toolbar" style="margin-top: 14px; margin-bottom: 0;">
-            <span id="coins-meta" class="l-hint"></span>
-            <button id="coins-more" class="btn btn-ghost" type="button" hidden>Load more</button>
-          </div>
-        </div>
-      </section>
     </main>
-
-    <footer class="footer">
-      <div class="foot-bot">
-        <span>© 2026 Surco · <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a> · <a href="https://x.com/intent/post?text=Chirp%3A%20a%20coin%20on%20Base%20backed%20by%20Pinto%20in%20the%20silo.%20Silo%20yield%20buys%20it%20back%20and%20burns%20it.%20%40chirpfi&amp;url=https%3A%2F%2Fsurcofi.com%2F" target="_blank" rel="noopener">Share on X</a> · <button class="foot-copy" id="copyLink" type="button" data-copy="https://surcofi.com/">Copy link</button> · <a href="/chirp">Chirp</a> · <a href="/docs">Docs</a> · <a href="/pinto">What is Pinto</a> · <a href="/press">Press kit</a></span>
-        <span class="foot-disc">Surco contracts on Base have no owner, no pause and no upgrade.</span>
-      </div>
-    </footer>
 
     <script type="module" src="/page.js"></script>
     <script type="module" src="/coins-page.js"></script>
