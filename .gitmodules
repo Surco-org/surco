@@ -1,0 +1,9 @@
+[submodule "chirp/lib/forge-std"]
+	path = chirp/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std.git
+[submodule "chirp/lib/solmate"]
+	path = chirp/lib/solmate
+	url = https://github.com/transmissions11/solmate.git
+[submodule "chirp/lib/v4-core"]
+	path = chirp/lib/v4-core
+	url = https://github.com/Uniswap/v4-core.git

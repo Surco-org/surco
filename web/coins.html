@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coins — Surco</title>
+    <meta name="description" content="Coins launched on Base whose trade fees buy Pinto into the Silo. No owner, no pause, no upgrade." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Surco" />
+    <meta property="og:title" content="Coins — Surco Launcher" />
+    <meta property="og:description" content="Permissionless coins on Base whose trade fees buy Pinto into the Silo." />
+    <meta property="og:url" content="https://surcofi.com/coins" />
+    <meta property="og:image" content="https://surcofi.com/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@chirpfi" />
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/shop.css" />
+    <link rel="stylesheet" href="/launcher.css" />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
+        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
+        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
+        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
+        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
+        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
+        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
+        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
+          <path d="M120 900 C500 850 940 850 1320 900" />
+          <path d="M40 900 C480 840 960 840 1400 900" />
+          <path d="M260 900 C560 860 900 860 1200 900" />
+        </g>
+      </svg>
+      <div class="grain"></div>
+    </div>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="/" aria-label="Surco home">
+        <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
+        <span class="brand-name">Surco</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="/coins" aria-current="page">Coins</a>
+        <a href="/launch">Launch</a>
+        <a href="/stake">Stake</a>
+        <a href="/creator">Creator</a>
+        <a href="/chirp">Chirp</a>
+        <a href="/pinto">Pinto</a>
+        <a href="/docs">Docs</a>
+        <a href="/">Home</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+        <span class="net-pill">Base</span>
+        <button id="connect" class="btn btn-ghost" type="button">Connect wallet</button>
+        <a class="btn btn-primary" href="/launch">Launch a coin</a>
+      </div>
+      <button class="nav-burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </header>
+
+    <div class="l-test-banner" id="test-banner" hidden>
+      <span><strong>Test factory on Base</strong> — real ETH, test deployment while we finalize the launcher.</span>
+      <a class="mono" id="test-factory-link" target="_blank" rel="noopener"></a>
+    </div>
+
+    <main id="top" class="l-wrap">
+      <div class="l-head">
+        <div>
+          <span class="kicker">Surco launcher</span>
+          <h1>Coins backed by Pinto</h1>
+          <p class="l-lead">Every trade pays a WETH fee that buys Pinto into the Silo. Liquidity is locked forever. No owner, no pause, no upgrade.</p>
+        </div>
+        <div class="l-actions">
+          <a class="btn btn-primary" href="/launch">Launch a coin</a>
+          <a class="btn btn-ghost" href="/creator">Creator earnings</a>
+        </div>
+      </div>
+
+      <section class="l-card" aria-label="Launched coins">
+        <div class="l-toolbar">
+          <div class="l-pills" role="group" aria-label="Sort coins">
+            <button type="button" class="l-pill sort-btn" data-sort="activity" aria-pressed="true">Active</button>
+            <button type="button" class="l-pill sort-btn" data-sort="backing" aria-pressed="false">Most Pinto</button>
+            <button type="button" class="l-pill sort-btn" data-sort="newest" aria-pressed="false">Newest</button>
+          </div>
+          <input id="coins-search" class="l-search" type="search" placeholder="Search name, symbol, or 0x address…" aria-label="Search coins" />
+        </div>
+
+        <div class="l-table-wrap">
+          <table class="l-table">
+            <thead>
+              <tr>
+                <th>Coin</th>
+                <th>Mode</th>
+                <th class="l-num">Price / FDV</th>
+                <th class="l-num">24h Volume</th>
+                <th class="l-num">Silo Pinto</th>
+                <th class="l-num">veChirp</th>
+                <th class="l-num">Launched</th>
+              </tr>
+            </thead>
+            <tbody id="coins-body">
+              <tr><td colspan="7" class="l-empty">Loading coins from Base…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="l-toolbar" style="margin-top: 14px; margin-bottom: 0;">
+          <span id="coins-meta" class="l-hint"></span>
+          <button id="coins-more" class="btn btn-ghost" type="button" hidden>Load more</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-in">
+        <div class="foot-links">
+          <a href="/">Home</a>
+          <a href="/launch">Launch</a>
+          <a href="/creator">Creator</a>
+          <a href="/chirp">Chirp</a>
+          <a href="/pinto">Pinto</a>
+          <a href="/docs">Docs</a>
+          <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a>
+          <button id="copyLink" class="link-btn" type="button" data-copy="https://surcofi.com/coins">Copy link</button>
+        </div>
+        <p class="foot-note">Permissionless factory on Base. Anyone can launch a coin; do your own checks before buying.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/page.js"></script>
+    <script type="module" src="/coins-page.js"></script>
+  </body>
+</html>

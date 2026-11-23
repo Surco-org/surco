@@ -1,0 +1,25 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["../chirp/lib"]
+solc = "0.8.26"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+# Through the lib -> ../chirp/lib symlink: a remapping that starts with "../" gives solc source names it
+# cannot resolve when v4-core/PoolManager.sol is compiled (error 2449). Keep these inside the project.
+remappings = [
+    "forge-std/=lib/forge-std/src/",
+    "solmate/=lib/solmate/",
+    "v4-core/=lib/v4-core/src/",
+    "chirp/=../chirp/src/",
+]
+
+[invariant]
+runs = 256
+depth = 64
+fail_on_revert = true # a handler's unexpected revert or failed check is a finding
+show_metrics = true
+
+[lint]
+lint_on_build = false

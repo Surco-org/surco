@@ -1,0 +1,23 @@
+# Build & test artifacts
+out/
+cache/
+broadcast/
+dist/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.wrangler/
+
+# Local secrets & runtime state
+.env
+.env.*
+*.env
+!*.env.example
+.deploy-key
+state.json
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db

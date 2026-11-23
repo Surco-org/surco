@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Documentation — Surco</title>
+    <meta name="description" content="Complete documentation for Surco on Base: Chirp, Pinto and the Silo, the Coin Launcher (Burn & Redeem modes), Collective Silo & veChirp NFTs, contracts, and risks." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Surco" />
+    <meta property="og:title" content="Documentation — Surco" />
+    <meta property="og:description" content="How Chirp, the Surco Coin Launcher, Burn & Redeem vaults, and the Collective Silo + veChirp NFT gauge work on Base." />
+    <meta property="og:url" content="https://surcofi.com/docs" />
+    <meta property="og:image" content="https://surcofi.com/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@chirpfi" />
+    <meta name="twitter:title" content="Documentation — Surco" />
+    <meta name="twitter:description" content="How Chirp, the Surco Coin Launcher, Burn & Redeem vaults, and the Collective Silo + veChirp NFT gauge work on Base." />
+    <meta name="twitter:image" content="https://surcofi.com/og.jpg" />
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/shop.css" />
+    <link rel="stylesheet" href="/launcher.css" />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
+        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
+        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
+        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
+        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
+        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
+        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
+        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
+          <path d="M120 900 C500 850 940 850 1320 900" />
+          <path d="M40 900 C480 840 960 840 1400 900" />
+          <path d="M260 900 C560 860 900 860 1200 900" />
+        </g>
+      </svg>
+      <div class="grain"></div>
+    </div>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="/" aria-label="Surco home">
+        <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
+        <span class="brand-name">Surco</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="/">Coins</a>
+        <a href="/launch">Launch</a>
+        <a href="/stake">Stake</a>
+        <a href="/creator">Creator</a>
+        <a href="/chirp">Chirp</a>
+        <a href="/pinto">Pinto</a>
+        <a href="/docs" aria-current="page">Docs</a>
+        <a href="/">Home</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+        <a class="theme-toggle nav-x" href="https://x.com/chirpfi" target="_blank" rel="noopener" aria-label="Chirp on X" title="@chirpfi on X"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <span class="net-pill">Base</span>
+        <a class="btn btn-primary" href="/launch">Launch a coin</a>
+      </div>
+      <button class="nav-burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </header>
+
+    <main id="top" class="app explain">
+      <section class="section" id="overview">
+        <div class="sec-head">
+          <span class="kicker">Documentation</span>
+          <h1 class="press-h1">How Surco works</h1>
+          <p class="lead">Everything on surcofi.com runs on Base (chain 8453), routes backing into Pinto's Silo, and uses immutable contracts with no owner, no pause, and no upgrade.</p>
+        </div>
+
+        <nav class="l-pills" aria-label="Documentation sections" style="margin-bottom:24px;">
+          <a class="l-pill" href="#pages">Site map</a>
+          <a class="l-pill" href="#chirp">Chirp</a>
+          <a class="l-pill" href="#pinto">Pinto &amp; Silo</a>
+          <a class="l-pill" href="#launcher">Coin Launcher</a>
+          <a class="l-pill" href="#modes">Burn vs Redeem</a>
+          <a class="l-pill" href="#vechirp">Collective Silo &amp; veChirp</a>
+          <a class="l-pill" href="#upkeep">Keepers &amp; Guards</a>
+          <a class="l-pill" href="#contracts">Contracts</a>
+          <a class="l-pill" href="#risks">Risks &amp; Limits</a>
+        </nav>
+
+        <div class="prose" id="pages">
+          <h2>Pages on surcofi.com</h2>
+          <div class="why-wrap">
+            <table class="why">
+              <thead>
+                <tr>
+                  <th scope="col">Page</th>
+                  <th scope="col">What it does</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><a href="/"><code>/</code></a></td><td>Surco coins directory: lists flagship Chirp alongside every coin launched through the Surco Launcher, sortable by 24h activity, Silo Pinto backing, or newest (also reachable at <code>/coins</code>).</td></tr>
+                <tr><td><a href="/chirp"><code>/chirp</code></a></td><td>Chirp's custom coin page: buy or sell CHIRP with ETH, USDC, Pinto, cbETH, or cbBTC, watch the live price chart, inspect trades and holders, and run public Silo / Field upkeep.</td></tr>
+                <tr><td><a href="/pinto"><code>/pinto</code></a></td><td>Plain-language explainer of Pinto, how its $1 peg works, Silo &amp; Field mechanics, and live peg status.</td></tr>
+                <tr><td><a href="/launch"><code>/launch</code></a></td><td>Permissionless one-transaction coin launcher: deploys token, Silo vault, and locked Uniswap v4 pool.</td></tr>
+                <tr><td><a href="/coin"><code>/coin?a=0x…</code></a></td><td>Individual coin page: price chart, direct Uniswap v4 buy/sell card, live vault backing, Redeem form (Redeem mode), Seed Pinto form, and activity feed.</td></tr>
+                <tr><td><a href="/stake"><code>/stake</code></a></td><td>Collective Silo &amp; veChirp NFT gauge: lock CHIRP for 2–365 days or Permanent Max-Lock to direct Collective Silo yield and claim bought coins.</td></tr>
+                <tr><td><a href="/creator"><code>/creator</code></a></td><td>Creator fee dashboard: inspect your launched coins, claim accumulated WETH creator fees via <code>split()</code>, or transfer payout rights.</td></tr>
+                <tr><td><a href="/press"><code>/press</code></a></td><td>Downloadable logos, social cards, colour tokens, and verified Chirp contract addresses.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="chirp">
+        <div class="sec-head">
+          <span class="kicker">Flagship coin</span>
+          <h2>Chirp (CHIRP)</h2>
+          <p class="lead">A fixed-supply coin on Base sold from a one-sided book and backed directly by Pinto in the Silo.</p>
+        </div>
+        <div class="prose">
+          <ul>
+            <li><b>Fixed supply:</b> 1,000,000,000 <code>CHIRP</code> (18 decimals) minted once on 2026-11-17. There is no mint function.</li>
+            <li><b>One-sided Uniswap v4 book:</b> price opened at <code>0.01 Pinto</code> and rises along the curve as people buy; it cannot drop below the opening price.</li>
+            <li><b>Instant Silo backing:</b> every Pinto paid on a buy is deposited into Pinto's Silo inside the same transaction. Sells withdraw Pinto straight from the Silo right away — including germinating deposits — so sellers never wait.</li>
+            <li><b>1% fee each way:</b> buys and sells pay a 1% fee. Above $1, Silo yield (Earned Pinto) buys Chirp from the book and burns it permanently. Below $1, accumulated sell-fee Pinto can be sown in Pinto's Field only at maximum temperature; when Pods repay and are harvested, the Pinto returns to Silo backing and buys Chirp to burn.</li>
+            <li><b>Public upkeep:</b> <em>Claim yield &amp; burn</em>, <em>Sow the pile</em>, and <em>Harvest</em> are open buttons anyone can call. When Chirp sows, it names the Surco team wallet <a class="mono" href="https://basescan.org/address/0x0dB14dc82CBB0ce820F65c9796E0bC9E19eF08bf" target="_blank" rel="noopener">0x0dB1…08bf</a> as Pinto's referrer (any bonus Pods come from Pinto's referral program, never from Chirp's backing).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="pinto">
+        <div class="sec-head">
+          <span class="kicker">The backing layer</span>
+          <h2>Pinto &amp; the Silo</h2>
+        </div>
+        <div class="prose">
+          <p><a href="/pinto">Pinto</a> is a credit-based stablecoin on Base aiming for $1 across hourly <b>Seasons</b>. Every coin on Surco — both Chirp and every coin created on the Launcher — uses Pinto's <b>Silo</b> as its on-chain backing vault.</p>
+          <div class="press-grid two">
+            <div class="card press-row">
+              <span class="stat-k">When Pinto is above $1</span>
+              <p class="press-text-plain">Pinto mints new Pinto each Season and splits it between the Field's Pod Line and Silo depositors. Surco vaults earn Earned Pinto proportional to their Stalk and convert that yield into coin buybacks (Burn vaults and Collective Silo) or growing redemption value (Redeem vaults).</p>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">When Pinto is below $1</span>
+              <p class="press-text-plain">Pinto stops minting for Silo depositors and borrows via the Field instead. While below peg, Surco vaults keep accumulating Pinto from trade fees and holding their Silo deposits (growing Stalk via Seeds), but buyback yield waits until Pinto trades back above $1.</p>
+            </div>
+          </div>
+          <p>Read the full plain-language guide on <a href="/pinto">/pinto</a> or inspect Pinto's own <a href="https://docs.pinto.money/appendix/disclosures" target="_blank" rel="noopener">Disclosures</a>.</p>
+        </div>
+      </section>
+
+      <section class="section" id="launcher">
+        <div class="sec-head">
+          <span class="kicker">Coin Launcher</span>
+          <h2>Launch, trade, and earn on Base</h2>
+          <p class="lead">Anyone can launch a coin in one transaction whose trade fees continuously buy Pinto into a permanent Silo vault.</p>
+        </div>
+        <div class="prose">
+          <h3>What happens in a single launch transaction</h3>
+          <ol>
+            <li><b>Token deployed:</b> an immutable ERC-20 with a fixed <code>1,000,000,000</code> supply (18 decimals, zero mint function) and on-chain <code>imageUrl()</code>, <code>metadataUri()</code>, and <code>contractURI()</code> (ERC-7572) metadata for wallets and Base token listings.</li>
+            <li><b>Vault deployed:</b> a dedicated, ownerless <code>BurnVault</code> or <code>RedeemVault</code> linked permanently to the coin.</li>
+            <li><b>Locked Uniswap v4 pool:</b> 100% of supply is deposited single-sided into a <code>COIN/WETH</code> Uniswap v4 pool starting at a <b>10 ETH fully diluted value</b>. Liquidity is locked in the hook forever and cannot be removed.</li>
+            <li><b>Optional creator first buy:</b> any ETH sent above the launch fee buys the coin inside the launch transaction at the normal trade fee, before the anti-sniper toll starts.</li>
+          </ol>
+
+          <h3>Trade fees &amp; splits</h3>
+          <div class="why-wrap">
+            <table class="why">
+              <thead>
+                <tr>
+                  <th scope="col">Parameter</th>
+                  <th scope="col">Range / Default</th>
+                  <th scope="col">How it works</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Total trade fee (<code>feeBps</code>)</td><td><code>0.30%</code> – <code>3.00%</code> (default <code>1.00%</code>)</td><td>Collected in WETH on every buy and sell through the locked Uniswap v4 hook. Locked at launch.</td></tr>
+                <tr><td>Platform share</td><td>Fixed <code>20%</code> of trade fees</td><td>Sent in WETH to the Surco platform Safe when <code>split()</code> runs.</td></tr>
+                <tr><td>Creator share (<code>creatorBps</code>)</td><td><code>0%</code> – <code>20%</code> of trade fees (default <code>10%</code>)</td><td>Paid in WETH directly to <code>creatorPayout</code>. Payout address can be rotated anytime on <a href="/creator">/creator</a>.</td></tr>
+                <tr><td>Pinto Silo share</td><td><code>60%</code> – <code>80%</code> of trade fees (default <code>70%</code>)</td><td>Swapped <code>WETH → cbETH → Pinto</code> (price-guarded) and deposited permanently into the coin's Silo vault.</td></tr>
+                <tr><td>Anti-sniper toll</td><td><code>80%</code> → normal fee over <code>10 minutes</code></td><td>Starts right after launch and decays linearly over 600 seconds so early snipers feed the coin's Pinto Silo instead of extracting value.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Trading &amp; seeding</h3>
+          <ul>
+            <li><b>Direct v4 swaps on <a href="/coin">/coin</a>:</b> buy with native ETH (zero approvals via Universal Router) or WETH, and sell to ETH or WETH using exact-amount Permit2 approvals. Because pools live directly on Base Uniswap v4, coins also route automatically on Base App and index on DexScreener / GeckoTerminal.</li>
+            <li><b>Voluntary <code>seed()</code>:</b> anyone can transfer Pinto directly to any vault and call <code>seed()</code> to book it straight into that vault's Silo principal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="modes">
+        <div class="sec-head">
+          <span class="kicker">Vault modes</span>
+          <h2>Burn mode vs. Redeem mode</h2>
+          <p class="lead">Chosen once at launch and permanent forever.</p>
+        </div>
+        <div class="prose">
+          <div class="press-grid two">
+            <div class="card press-row">
+              <span class="stat-k">Burn mode (default)</span>
+              <p class="press-text-plain">Silo Pinto principal is locked forever and can never be withdrawn. When Pinto trades above $1, Silo yield (<code>buyback()</code>) buys the coin from its locked Uniswap v4 pool — guarded by the hook's 10-minute tick EMA — and permanently burns 100% of the coins bought. Supply only ever falls.</p>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">Redeem mode</span>
+              <p class="press-text-plain">Silo Pinto backs the coin directly as a redeemable floor. Any holder can call <code>redeem()</code> anytime to burn coins for their exact pro-rata share of the vault's Silo Pinto (<code>coins × siloPinto / totalSupply</code>), minus a <code>1%</code> fee that stays inside the vault and raises backing per remaining coin.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="vechirp">
+        <div class="sec-head">
+          <span class="kicker">Collective Silo &amp; veChirp</span>
+          <h2>Lock Chirp, direct yield, earn coins</h2>
+          <p class="lead">Live on Base mainnet at <a href="/stake">/stake</a>.</p>
+        </div>
+        <div class="prose">
+          <p>Every coin launched on the real Surco factory pays a flat <b><code>0.0001 ETH</code> launch fee</b> routed straight (as WETH) into an immutable shared <b>Collective Pinto Silo</b> (<code>CollectiveSilo</code>), alongside any voluntary <code>seed()</code> Pinto. Like a Burn vault, Collective Silo principal is never withdrawn.</p>
+
+          <h3>How veChirp NFTs work</h3>
+          <ul>
+            <li><b>Minimal ERC-721 lock:</b> lock any amount of <code>CHIRP</code> in <code>VeChirp</code> to mint a transferable veChirp NFT with live on-chain SVG metadata.</li>
+            <li><b>Fixed term (2–365 UTC days):</b> voting weight equals <code>CHIRP × remainingDays / 365</code>, decaying cleanly by 1 day every UTC midnight with zero rounding drift.</li>
+            <li><b>Permanent Max-Lock toggle:</b> pin your weight at <b>100%</b> of locked CHIRP indefinitely. Whenever you toggle Permanent off, a standard 365-day countdown begins at the next UTC midnight.</li>
+            <li><b>One coin per NFT, next-day activation:</b> each veChirp NFT directs its weight to one factory-launched coin. New locks, additions, extensions, permanent toggles, and coin switches take effect at <code>00:00 UTC</code> the following day — making flash-staking and sunrise-hopping impossible.</li>
+            <li><b>100% of bought coins to lockers:</b> when Pinto is above $1, <code>plant()</code> allocates daily Collective Silo yield across all backed coins by their veChirp weight (days with zero staked Chirp roll yield into permanent principal). Once a UTC day ends, <code>distribute()</code> swaps each coin's Pinto share through its locked v4 pool (same EMA <code>PriceGuard</code>, 0.5% Pinto tip), and veChirp NFT owners call <code>claim()</code> to receive 100% of the coins bought for their share.</li>
+            <li><b>Always withdrawable:</b> <code>VeChirp</code> holds locked CHIRP directly with zero external dependency on Pinto or <code>CollectiveSilo</code>. Once a lock's UTC end day passes, your CHIRP is always withdrawable via <code>withdraw()</code>, and any past unclaimed coin rewards remain claimable even after burning the NFT.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="upkeep">
+        <div class="sec-head">
+          <span class="kicker">Automation &amp; safety</span>
+          <h2>Permissionless keepers &amp; price guards</h2>
+        </div>
+        <div class="prose">
+          <ul>
+            <li><b>Anyone can turn vaults over:</b> <code>split()</code>, <code>convert()</code>, <code>buyback()</code>, <code>claim()</code>, <code>seed()</code>, <code>plant()</code>, and <code>distribute()</code> have no access control. Caller tips are fixed at <code>0.5%</code> on <code>convert()</code> (in WETH) and on <code>buyback()</code> / <code>distribute()</code> (in Pinto).</li>
+            <li><b>Subsidized daily keeper:</b> Surco operates a daily keeper on Base that converts vaults once fees reach <code>0.0005 WETH</code>, books seeded Pinto, and runs at-peg buybacks and Collective Silo distributions.</li>
+            <li><b>Three-layer sandwich protection:</b> every swap route is checked on-chain against (1) Uniswap v3's 15-minute TWAP on <code>WETH/cbETH</code> (<code>±0.5%</code>), (2) Basin's Pump EMA on <code>cbETH/Pinto</code> (<code>±0.5%</code>), and (3) the launcher hook's own 10-minute tick EMA on each <code>COIN/WETH</code> pool (<code>±5%</code> drift cap, <code>±3%</code> min-out tolerance). Manipulated blocks revert cleanly instead of losing value.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="contracts">
+        <div class="sec-head">
+          <span class="kicker">Contracts on Base</span>
+          <h2>Verify everything on-chain</h2>
+          <p class="lead">Every contract below is live on Base mainnet (chain 8453) with verified source code on Basescan and Sourcify. The full open-source contracts, tests, keeper, frontend, and worker are published at <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">github.com/Surco-org/surco</a>.</p>
+        </div>
+        <div class="prose">
+          <h3>Chirp (live)</h3>
+          <div class="press-copy">
+            <div class="card press-row">
+              <span class="stat-k">Chirp token (CHIRP)</span>
+              <a class="mono press-addr" href="https://basescan.org/token/0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13" target="_blank" rel="noopener">0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13</a>
+              <a class="verified" href="https://basescan.org/address/0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">Chirp Shop hook</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8" target="_blank" rel="noopener">0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8</a>
+              <a class="verified" href="https://basescan.org/address/0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">Chirp Book</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x10b919A89a5ABfecEBd805836DA174F02B023756" target="_blank" rel="noopener">0x10b919A89a5ABfecEBd805836DA174F02B023756</a>
+              <a class="verified" href="https://basescan.org/address/0x10b919A89a5ABfecEBd805836DA174F02B023756#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+          </div>
+
+          <h3 style="margin-top:24px;">Surco Launcher, Collective Silo &amp; veChirp (Base mainnet)</h3>
+          <p>Live immutable Base mainnet contracts. Zero owner, zero pause, zero upgrade.</p>
+          <div class="press-copy">
+            <div class="card press-row">
+              <span class="stat-k">LauncherFactory</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0xf3A050114d4310beF64660a68332169Eb76D0d70" target="_blank" rel="noopener">0xf3A050114d4310beF64660a68332169Eb76D0d70</a>
+              <a class="verified" href="https://basescan.org/address/0xf3A050114d4310beF64660a68332169Eb76D0d70#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">LauncherHook</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x9e0DB1E907Da713Ef19E95b0aB539f8ef9ffEAEc" target="_blank" rel="noopener">0x9e0DB1E907Da713Ef19E95b0aB539f8ef9ffEAEc</a>
+              <a class="verified" href="https://basescan.org/address/0x9e0DB1E907Da713Ef19E95b0aB539f8ef9ffEAEc#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">VeChirp (veCHIRP NFT)</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x7b817Bd8773b5CaAE267e9cc43FEdbceF148F0ed" target="_blank" rel="noopener">0x7b817Bd8773b5CaAE267e9cc43FEdbceF148F0ed</a>
+              <a class="verified" href="https://basescan.org/address/0x7b817Bd8773b5CaAE267e9cc43FEdbceF148F0ed#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">CollectiveSilo</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x1e050aDAC1011bcCeEf66FA485331fAaFA9Ad064" target="_blank" rel="noopener">0x1e050aDAC1011bcCeEf66FA485331fAaFA9Ad064</a>
+              <a class="verified" href="https://basescan.org/address/0x1e050aDAC1011bcCeEf66FA485331fAaFA9Ad064#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">BurnDeployer</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x4A3C9698fF108C936B40D0E92EaFb888661D0539" target="_blank" rel="noopener">0x4A3C9698fF108C936B40D0E92EaFb888661D0539</a>
+              <a class="verified" href="https://basescan.org/address/0x4A3C9698fF108C936B40D0E92EaFb888661D0539#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">RedeemDeployer</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0x7DEA8FC6C53c1CE56701A423169cAA6d97599e14" target="_blank" rel="noopener">0x7DEA8FC6C53c1CE56701A423169cAA6d97599e14</a>
+              <a class="verified" href="https://basescan.org/address/0x7DEA8FC6C53c1CE56701A423169cAA6d97599e14#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+          </div>
+
+          <h3 style="margin-top:24px;">External protocol addresses (Base)</h3>
+          <div class="press-copy">
+            <div class="card press-row">
+              <span class="stat-k">Pinto Diamond</span>
+              <a class="mono press-addr" href="https://basescan.org/address/0xD1A0D188E861ed9d15773a2F3574a2e94134bA8f" target="_blank" rel="noopener">0xD1A0D188E861ed9d15773a2F3574a2e94134bA8f</a>
+              <a class="verified" href="https://basescan.org/address/0xD1A0D188E861ed9d15773a2F3574a2e94134bA8f#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+            <div class="card press-row">
+              <span class="stat-k">Pinto Token</span>
+              <a class="mono press-addr" href="https://basescan.org/token/0xb170000aeeFa790fa61D6e837d1035906839a3c8" target="_blank" rel="noopener">0xb170000aeeFa790fa61D6e837d1035906839a3c8</a>
+              <a class="verified" href="https://basescan.org/address/0xb170000aeeFa790fa61D6e837d1035906839a3c8#code" target="_blank" rel="noopener">Verified source</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="risks">
+        <div class="sec-head">
+          <span class="kicker">Risks &amp; limits</span>
+          <h2>Read before you trade or lock</h2>
+        </div>
+        <div class="card note">
+          <ul>
+            <li><b>Pinto peg &amp; upgradability:</b> all Surco backing sits in Pinto's Silo. Pinto is a credit-based stablecoin that can trade below $1 for extended periods — while below $1, Silo deposits earn no new Pinto. Pinto's contract can also be upgraded by a 5-of-9 multisig (<a href="https://docs.pinto.money/appendix/upgradability" target="_blank" rel="noopener">Pinto Upgradability</a>).</li>
+            <li><b>Immutable contracts:</b> Surco contracts have no owner, no pause, and no upgrade path. If an upstream dependency breaks or an undiscovered bug exists, deployed contracts cannot be patched in place.</li>
+            <li><b>Permissionless launcher:</b> anyone can launch a coin on the factory. Listing on <a href="/">the coins directory</a> is automatic and not an endorsement. Always verify the contract address, fee %, and vault mode (<code>Burn</code> vs <code>Redeem</code>) before trading.</li>
+            <li><b>veChirp lock commitment:</b> locked CHIRP cannot be withdrawn early before its UTC end day. Turning off Permanent Max-Lock starts a 365-day countdown before withdrawal is possible.</li>
+            <li><b>Market risk:</b> Chirp, Pinto, and every coin launched on Surco can lose value. Nothing on this site is financial, legal, or tax advice.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-bot">
+        <span>© 2026 Surco · <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a> · <a href="https://x.com/intent/post?text=Chirp%3A%20a%20coin%20on%20Base%20backed%20by%20Pinto%20in%20the%20silo.%20Silo%20yield%20buys%20it%20back%20and%20burns%20it.%20%40chirpfi&amp;url=https%3A%2F%2Fsurcofi.com%2F" target="_blank" rel="noopener">Share on X</a> · <button class="foot-copy" id="copyLink" type="button" data-copy="https://surcofi.com/">Copy link</button> · <a href="/docs">Docs</a> · <a href="/pinto">What is Pinto</a> · <a href="/press">Press kit</a></span>
+        <span class="foot-disc">Surco contracts on Base have no owner, no pause and no upgrade.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/page.js"></script>
+  </body>
+</html>

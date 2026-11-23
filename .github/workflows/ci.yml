@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contracts:
+    name: Foundry (Chirp + Launcher)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Test Chirp contracts
+        working-directory: chirp
+        run: forge test -vv
+      - name: Test Launcher, CollectiveSilo & VeChirp contracts
+        working-directory: launcher
+        run: forge test --no-match-path 'test/fork/*' -vv
+
+  keeper:
+    name: Keeper (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test keeper
+        working-directory: launcher/keeper
+        run: python3 -m unittest test_keeper -v
+
+  web:
+    name: Frontend (web)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install, test, and build web
+        working-directory: web
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+  worker:
+    name: Worker API (worker)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: worker/package-lock.json
+      - name: Install, typecheck, and test worker
+        working-directory: worker
+        run: |
+          npm ci
+          npm run typecheck
+          npm test

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the launcher keeper once a day
+
+[Timer]
+OnCalendar=*-*-* 14:00:00 UTC
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

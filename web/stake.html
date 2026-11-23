@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stake Chirp (veChirp) — Surco</title>
+    <meta name="description" content="Lock Chirp into a veChirp NFT to direct Surco's Collective Pinto Silo yield toward factory-launched coins on Base and claim 100% of bought coins." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Surco" />
+    <meta property="og:title" content="Stake Chirp (veChirp) — Surco" />
+    <meta property="og:description" content="Lock Chirp for 2–365 days or Permanent Max-Lock to direct Collective Silo yield and earn backed coins." />
+    <meta property="og:url" content="https://surcofi.com/stake" />
+    <meta property="og:image" content="https://surcofi.com/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@chirpfi" />
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/shop.css" />
+    <link rel="stylesheet" href="/launcher.css" />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
+        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
+        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
+        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
+        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
+        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
+        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
+        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
+          <path d="M120 900 C500 850 940 850 1320 900" />
+          <path d="M40 900 C480 840 960 840 1400 900" />
+          <path d="M260 900 C560 860 900 860 1200 900" />
+        </g>
+      </svg>
+      <div class="grain"></div>
+    </div>
+
+    <header class="nav" id="nav">
+      <a class="brand" href="/" aria-label="Surco home">
+        <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
+        <span class="brand-name">Surco</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="/">Coins</a>
+        <a href="/launch">Launch</a>
+        <a href="/stake" aria-current="page">Stake</a>
+        <a href="/creator">Creator</a>
+        <a href="/chirp">Chirp</a>
+        <a href="/pinto">Pinto</a>
+        <a href="/docs">Docs</a>
+        <a href="/">Home</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+        <span class="net-pill">Base</span>
+        <button id="connect" class="btn btn-ghost" type="button">Connect wallet</button>
+        <a class="btn btn-primary" href="/launch">Launch a coin</a>
+      </div>
+      <button class="nav-burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </header>
+
+    <div class="l-test-banner" id="test-banner" hidden>
+      <span><strong>Test factory on Base</strong> — real ETH, test deployment while we finalize the launcher.</span>
+      <a class="mono" id="test-factory-link" target="_blank" rel="noopener"></a>
+    </div>
+
+    <main id="top" class="l-wrap">
+      <div class="l-head">
+        <div>
+          <span class="kicker">Collective Pinto Silo · veChirp NFT Gauge</span>
+          <h1>Stake Chirp</h1>
+          <p class="l-lead">Every coin launched on Surco sends a flat 0.0001 ETH fee into a shared, permanent Pinto Silo. Lock Chirp into a veChirp NFT to direct Silo yield to any launcher coin and claim 100% of the coins bought for your weight.</p>
+        </div>
+      </div>
+
+      <div id="stake-preview-banner" class="l-toll-banner" hidden>
+        <strong>Preview mode:</strong> Collective Silo &amp; veChirp activate with the real factory deployment on Base. Use the calculator below to preview lock weights today.
+      </div>
+
+      <section class="l-card" aria-label="Collective Silo stats" style="margin-bottom:20px;">
+        <div class="l-stat-grid">
+          <div class="l-stat-box"><span class="l-stat-k">Collective Silo Pinto</span><span id="cs-silo" class="l-stat-v">—</span></div>
+          <div class="l-stat-box"><span class="l-stat-k">Unspent Yield</span><span id="cs-yield" class="l-stat-v">—</span></div>
+          <div class="l-stat-box"><span class="l-stat-k">Pending Launch WETH</span><span id="cs-weth" class="l-stat-v">—</span></div>
+          <div class="l-stat-box"><span class="l-stat-k">Total Locked Chirp</span><span id="cs-locked" class="l-stat-v">—</span></div>
+          <div class="l-stat-box"><span class="l-stat-k">Active Gauge Weight</span><span id="cs-weight" class="l-stat-v">—</span></div>
+          <div class="l-stat-box"><span class="l-stat-k">veChirp NFTs</span><span id="cs-nfts" class="l-stat-v">—</span></div>
+        </div>
+      </section>
+
+      <div class="l-form-grid">
+        <form id="lock-form" class="l-card" novalidate>
+          <h2 style="margin:0 0 12px;font-size:22px;">Lock Chirp → Mint veChirp NFT</h2>
+          <div class="l-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <label for="lk-amount" style="margin:0;">Chirp to lock</label>
+              <span style="font-size:12.5px;color:var(--ink-soft);">
+                <span id="lk-bal">Balance: —</span>
+                <button type="button" id="lk-max" class="l-link-btn" style="margin-left:6px;">Max</button>
+              </span>
+            </div>
+            <input id="lk-amount" class="l-input mono" type="text" inputmode="decimal" placeholder="1000" />
+          </div>
+
+          <div class="l-field">
+            <label for="lk-coin">Backing coin (receives yield buybacks)</label>
+            <select id="lk-coin" class="l-input">
+              <option value="">Loading launcher coins…</option>
+            </select>
+            <p class="l-hint">You can switch coins anytime; changes activate at the next UTC midnight (00:00 UTC).</p>
+          </div>
+
+          <div class="l-field">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input id="lk-perm" type="checkbox" />
+              <span><strong>Permanent Max-Lock</strong> (100% weight until toggled off, then 365-day decay)</span>
+            </label>
+          </div>
+
+          <div id="lk-days-wrap" class="l-field">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <label for="lk-days" style="margin:0;">Lock duration (UTC days)</label>
+              <strong id="lk-days-val" class="mono">90 days</strong>
+            </div>
+            <input id="lk-days" type="range" min="2" max="365" value="90" style="width:100%;" />
+            <div class="l-pills" style="margin-top:8px;">
+              <button type="button" class="l-pill lk-preset" data-days="7">7d</button>
+              <button type="button" class="l-pill lk-preset" data-days="30">30d</button>
+              <button type="button" class="l-pill lk-preset" data-days="90">90d</button>
+              <button type="button" class="l-pill lk-preset" data-days="180">180d</button>
+              <button type="button" class="l-pill lk-preset" data-days="365">365d</button>
+            </div>
+          </div>
+
+          <div class="l-quote-row">
+            <span>Starting veChirp weight</span>
+            <strong id="lk-weight-out" class="mono">—</strong>
+          </div>
+          <div class="l-quote-row">
+            <span>Multiplier</span>
+            <strong id="lk-mult-out" class="mono">—</strong>
+          </div>
+
+          <button id="lk-submit" class="btn btn-primary btn-lg" type="submit" style="width:100%;margin-top:14px;">Lock Chirp</button>
+          <p id="lk-status" class="l-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="l-stack">
+          <section class="l-card l-guardrail" aria-label="How veChirp works">
+            <h3>How it works</h3>
+            <ul>
+              <li><strong>Linear 2–365 day decay:</strong> Weight = <code>Chirp × remainingDays / 365</code>, decaying daily with zero rounding drift.</li>
+              <li><strong>Permanent Max-Lock:</strong> Pins weight at 100% of locked Chirp until you toggle it off (starting a 365-day countdown).</li>
+              <li><strong>Next-day activation:</strong> New locks, additions, and coin switches activate at 00:00 UTC tomorrow — no flash-staking or sunrise-hopping.</li>
+              <li><strong>Always withdrawable:</strong> <code>VeChirp</code> holds your Chirp directly with zero external dependency on Pinto or the Collective Silo.</li>
+            </ul>
+          </section>
+
+          <section id="cs-seed-card" class="l-card" aria-label="Seed Collective Silo with Pinto">
+            <h3 style="margin:0 0 8px;font-size:20px;">Seed Collective Silo</h3>
+            <p class="l-hint" style="margin:0 0 12px;">Voluntarily add Pinto directly to the shared permanent Silo principal. Principal is never withdrawn; its yield flows to veChirp lockers forever.</p>
+            <form id="cs-seed-form" novalidate>
+              <div class="l-field">
+                <label for="cs-seed-amt">Pinto to add</label>
+                <input id="cs-seed-amt" class="l-input mono" type="text" inputmode="decimal" placeholder="25" />
+              </div>
+              <button id="cs-seed-btn" class="btn btn-ghost" type="submit" style="width:100%;">Transfer &amp; Seed Pinto</button>
+              <p id="cs-seed-status" class="l-status" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      <section class="l-card" aria-label="Your veChirp NFTs" style="margin-top:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;">
+          <h2 style="margin:0;font-size:22px;">Your veChirp NFTs</h2>
+          <span id="my-locks-note" class="l-hint" style="margin:0;">Connect a wallet to inspect and manage your veChirp locks.</span>
+        </div>
+        <div class="l-table-wrap">
+          <table class="l-table">
+            <thead>
+              <tr>
+                <th>NFT</th>
+                <th>Backing Coin</th>
+                <th class="l-num">Locked Chirp</th>
+                <th class="l-num">Weight</th>
+                <th>Status</th>
+                <th class="l-num">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="locks-body">
+              <tr><td colspan="6" class="l-empty">No veChirp NFTs to display yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="locks-status" class="l-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-in">
+        <div class="foot-links">
+          <a href="/">Home</a>
+          <a href="/">Coins</a>
+          <a href="/launch">Launch</a>
+          <a href="/stake">Stake</a>
+          <a href="/creator">Creator</a>
+          <a href="/chirp">Chirp</a>
+          <a href="/pinto">Pinto</a>
+          <a href="/docs">Docs</a>
+          <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="foot-note">Contracts on Base have no owner, no pause, and no upgrade.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/page.js"></script>
+    <script type="module" src="/stake-page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What is Pinto</title>
+    <meta name="description" content="What Pinto is, how it holds $1, and why Chirp is built the way it is to work alongside it." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Surco" />
+    <meta property="og:title" content="What is Pinto, and why Chirp is built on it" />
+    <meta property="og:description" content="Chirp is a coin on Base backed by Pinto in the silo. Silo yield buys Chirp back and burns it. No owner, no pause, no upgrade." />
+    <meta property="og:url" content="https://surcofi.com/pinto" />
+    <meta property="og:image" content="https://surcofi.com/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@chirpfi" />
+    <meta name="twitter:title" content="What is Pinto, and why Chirp is built on it" />
+    <meta name="twitter:description" content="Chirp is a coin on Base backed by Pinto in the silo. Silo yield buys Chirp back and burns it. No owner, no pause, no upgrade." />
+    <meta name="twitter:image" content="https://surcofi.com/og.jpg" />
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/shop.css" />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
+        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
+        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
+        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
+        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
+        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
+        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
+        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
+          <path d="M120 900 C500 850 940 850 1320 900" />
+          <path d="M40 900 C480 840 960 840 1400 900" />
+          <path d="M260 900 C560 860 900 860 1200 900" />
+        </g>
+      </svg>
+      <div class="grain"></div>
+    </div>
+
+
+    <header class="nav" id="nav">
+      <a class="brand" href="/" aria-label="Surco home">
+        <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
+        <span class="brand-name">Surco</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#problem">Pinto</a>
+        <a href="#silo">Silo</a>
+        <a href="#field-explained">Field</a>
+        <a href="#why-chirp">Why Chirp</a>
+        <a href="/">Coins</a>
+        <a href="/launch">Launch</a>
+        <a href="/">Home</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+        <a class="theme-toggle nav-x" href="https://x.com/chirpfi" target="_blank" rel="noopener" aria-label="Chirp on X" title="@chirpfi on X"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <span class="net-pill">Base · open</span>
+        <a class="btn btn-primary" href="/#trade">Buy Chirp</a>
+      </div>
+      <button class="nav-burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </header>
+    <main id="top" class="app explain">
+      <section class="section" id="problem">
+        <div class="sec-head">
+          <span class="kicker">What is Pinto</span>
+          <h1 class="press-h1">The problem Pinto is trying to solve</h1>
+        </div>
+        <div class="prose">
+          <p>Most of the dollars on a blockchain today are stablecoins issued by companies. Each one is backed by money held off the chain, and the company that issues it can freeze any holder's coins. Pinto's team argues that this leaves Ethereum depending on a few central issuers, and calls that "an existential threat to the sovereignty of the Ethereum network."</p>
+          <p><a href="https://docs.pinto.money/why-pinto/why-pinto-overview" target="_blank" rel="noopener">Pinto starts from three convictions</a>:</p>
+          <ol>
+            <li>Centralised stablecoins are a threat to Ethereum's independence.</li>
+            <li>Fiat money, money that is printed rather than backed, is the best model, if the printer is used wisely and fairly.</li>
+            <li>The right incentives can potentially make an on-chain currency stable enough to compete with the centralised ones.</li>
+          </ol>
+          <h2>So what is Pinto?</h2>
+          <p>Pinto is a stablecoin on Base that aims for $1. Nothing is locked up behind it. Pinto is built on <em>credit</em>: when there is too much Pinto, the protocol borrows it back from the market and destroys it, and it repays those loans by printing new Pinto later. Pinto calls this "leviathan-free" money: no company holds reserves, and none can freeze holders the way a stablecoin issuer can. Pinto's contract can still be upgraded by a multisig, which is covered further down.</p>
+          <p>The trade-off, in Pinto's own words: credit "cannot support a perfect peg." Pinto is designed to swing above and below $1 rather than sit on it (<a href="https://docs.pinto.money/why-pinto/credit-vs-collateral" target="_blank" rel="noopener">Credit vs Collateral</a>). Nothing guarantees it gets back to $1, and Pinto's own <a href="https://docs.pinto.money/appendix/disclosures" target="_blank" rel="noopener">Disclosures</a> say so plainly. Pinto launched in November 2024. It is the successor to Beanstalk, which launched on Ethereum in 2021.</p>
+          <p class="live-line">Pinto right now: <b data-live="price">—</b> (<span data-live="gap">—</span>).</p>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="sec-head"><span class="kicker">The engine</span><h2>How Pinto holds $1</h2></div>
+        <div class="prose">
+          <p>Pinto keeps time in <b>Seasons</b> of about an hour. Each one starts when someone calls Pinto's sunrise function, for a small Pinto reward (<a href="https://docs.pinto.money/pinto-mechanics/sun-the-source-of-life-on-the-farm" target="_blank" rel="noopener">the Sun</a>). At each Season Pinto checks its price across its pools, then acts:</p>
+          <div class="press-grid two">
+            <div class="card press-row"><span class="stat-k">Above $1: too little Pinto</span><p class="press-text-plain">Pinto prints new Pinto. At today's supply, the new Pinto goes 48.5% to repay loans at the front of the Field's line, 48.5% to Silo depositors, and 3% to Pinto's development budget (<a href="https://docs.pinto.money/responding-to-state/minting" target="_blank" rel="noopener">Minting</a>). With no loans waiting, their share goes to the others.</p></div>
+            <div class="card press-row"><span class="stat-k">Below $1: too much Pinto</span><p class="press-text-plain">Pinto offers to borrow Pinto through the Field. Lent Pinto is destroyed, which shrinks the supply, and the lender gets a claim to be repaid later, with interest, if Pinto prints enough.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="silo">
+        <div class="sec-head"><span class="kicker">The Silo</span><h2>Where Pinto pays its savers</h2></div>
+        <div class="prose">
+          <p>The <a href="https://docs.pinto.money/pinto-mechanics/silo-the-perfect-complement-to-credit" target="_blank" rel="noopener">Silo</a> is Pinto's deposit account. Anyone can deposit Pinto in it and take the Pinto out again whenever they like.</p>
+          <ul>
+            <li><b>Stalk.</b> A deposit earns Stalk, which entitles you to a share of the Silo's part of every future print.</li>
+            <li><b>Seeds and grown Stalk.</b> Deposits also earn Seeds, which grow more Stalk every Season. The longer you stay, the bigger your share.</li>
+            <li><b>Germination.</b> A new deposit takes about two Seasons before it earns. This stops anyone from borrowing a large sum, depositing for a moment and taking the yield.</li>
+            <li><b>Earned Pinto.</b> Your share of each print collects as Earned Pinto. You claim it to add it to your deposit.</li>
+          </ul>
+          <p>The Silo only earns when Pinto prints for savers, and that only happens above $1.</p>
+        </div>
+      </section>
+
+      <section class="section" id="field-explained">
+        <div class="sec-head"><span class="kicker">The Field</span><h2>Where Pinto borrows</h2></div>
+        <div class="prose">
+          <p>The <a href="https://docs.pinto.money/pinto-mechanics/field-the-most-innovative-lending-facility-in-crypto" target="_blank" rel="noopener">Field</a> is how Pinto borrows when it is below $1.</p>
+          <ul>
+            <li><b>Soil</b> is how much Pinto the protocol will borrow this Season.</li>
+            <li><b>Sowing</b> is lending: you give Pinto, and it is destroyed.</li>
+            <li><b>Temperature</b> is the interest rate. Sow 100 Pinto at 50% and you are owed 150.</li>
+            <li><b>Pods</b> are what you are owed, and each one is worth 1 Pinto when it is repaid.</li>
+            <li><b>The Pod Line</b> repays loans in order, first in, first out, out of new prints above $1. Harvesting collects Pods that have been repaid.</li>
+          </ul>
+          <p>There is no date on a Pod, and it may never be repaid: it is repaid only if Pinto prints enough to reach its place in the line (Disclosure 6).</p>
+        </div>
+      </section>
+
+      <section class="section" id="why-chirp">
+        <div class="sec-head"><span class="kicker">Chirp</span><h2>Why Chirp is built the way it is</h2>
+          <p class="lead">Chirp is a coin whose backing is Pinto in the Silo. Each part of Chirp's design answers something Pinto does.</p></div>
+        <div class="why-wrap">
+          <table class="why">
+            <thead><tr><th scope="col">Pinto does</th><th scope="col">Chirp does</th><th scope="col">Why</th></tr></thead>
+            <tbody>
+              <tr><td>Pays new Pinto to Silo deposits, only above $1</td><td>Deposits every Pinto from a buy in the Silo, in the same trade</td><td>Chirp's backing earns whenever Pinto prints</td></tr>
+              <tr><td>Makes new deposits wait about two Seasons</td><td>A sell takes Pinto out of the Silo, waiting deposits included</td><td>Sellers never wait for germination</td></tr>
+              <tr><td>Pays yield as Earned Pinto</td><td>"Claim yield &amp; burn" uses it to buy Chirp and burn it</td><td>Yield shrinks Chirp's supply instead of being paid out to anyone</td></tr>
+              <tr><td>Borrows below $1 at a temperature</td><td>Sows the sell-fee pile only below $1 and only at Pinto's maximum temperature</td><td>Chirp lends only when Pinto pays its highest rate</td></tr>
+              <tr><td>Repays Pods first in, first out</td><td>"Harvest" deposits repaid Pods in the Silo and buys Chirp to burn</td><td>Loans that are repaid come back as backing</td></tr>
+              <tr><td>Has no governance; a multisig can upgrade it</td><td>Has no owner, no pause and no upgrade</td><td>Nobody can change Chirp, including us</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="limits">
+        <div class="sec-head"><span class="kicker">Limits</span><h2>What Chirp can't do</h2></div>
+        <div class="prose">
+          <ul>
+            <li><b>Chirp's backing lives inside Pinto.</b> The Pinto behind Chirp sits in Pinto's Silo. Pinto's contract can be upgraded by a 5-of-9 multisig, and Pinto's docs say it is expected to give up that power when it is prudent (<a href="https://docs.pinto.money/appendix/upgradability" target="_blank" rel="noopener">Upgradability</a>). A change to Pinto can change what Chirp's Pinto does.</li>
+            <li><b>Chirp can't be patched.</b> If Pinto ever breaks deposits, withdrawals, sowing or harvesting, Chirp cannot be fixed. Holders keep their coins, but the Pinto would stay deposited in Pinto's Silo, where Chirp may not be able to get it out. A fix would mean a new coin.</li>
+            <li><b>Nobody is paid to run the upkeep.</b> Claim, Sow and Harvest are public buttons. Anyone can press them, and whoever does is not paid.</li>
+            <li><b>Sowing uses Pinto's referral program.</b> When Chirp sows, it names the Surco team wallet <a class="mono" href="https://basescan.org/address/0x0dB14dc82CBB0ce820F65c9796E0bC9E19eF08bf" target="_blank" rel="noopener">0x0dB14dc82CBB0ce820F65c9796E0bC9E19eF08bf</a> as referrer. If Pinto's program applies, Pinto gives that wallet a bonus plot of new Pods and gives Chirp a smaller one. Neither comes out of Chirp's Pinto. This is fixed in the contract and cannot be changed.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="editors-note">
+        <div class="card note">
+          <span class="kicker">Editor's note</span>
+          <h2>Where things stand today</h2>
+          <p>Pinto is at <b data-live="price">—</b>, <span data-live="gap">—</span>. The figures below are read from Base, not typed in.</p>
+          <div data-when="below" hidden>
+            <p>Below $1, Pinto prints no new Pinto for savers, so the Silo is not earning. Chirp's yield waiting to be claimed is <b data-live="earned">—</b>. Pinto is borrowing instead: the Field's temperature is <b data-live="temp">—</b> (the maximum is <span data-live="maxTemp">—</span>), with <b data-live="soil">—</b> of soil left this Season.</p>
+            <p>For Chirp, this means its backing is not growing from yield today. If Pinto gets back above $1, Chirp's Silo deposit earns its share of each print and that Pinto buys Chirp to burn. If Pinto stays below $1, Chirp keeps its Pinto, but that Pinto is worth what Pinto is worth.</p>
+          </div>
+          <div data-when="above" hidden>
+            <p>Above $1, Pinto prints, and Chirp's Silo deposit earns its share of each print. Chirp's yield waiting to be claimed is <b data-live="earned">—</b>.</p>
+          </div>
+          <p class="note-foot">Nothing here is advice. Pinto and Chirp can both lose value.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-bot">
+        <span>© 2026 Surco · <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a> · <a href="https://x.com/intent/post?text=Chirp%3A%20a%20coin%20on%20Base%20backed%20by%20Pinto%20in%20the%20silo.%20Silo%20yield%20buys%20it%20back%20and%20burns%20it.%20%40chirpfi&amp;url=https%3A%2F%2Fsurcofi.com%2F" target="_blank" rel="noopener">Share on X</a> · <button class="foot-copy" id="copyLink" type="button" data-copy="https://surcofi.com/">Copy link</button> · <a href="/docs">Docs</a> · <a href="/pinto">What is Pinto</a> · <a href="/press">Press kit</a></span>
+        <span class="foot-disc">Chirp is live on Base. The contracts have no owner, no pause and no upgrade.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/page.js"></script>
+    <script type="module" src="/pinto.js"></script>
+  </body>
+</html>

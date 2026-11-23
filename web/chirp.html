@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chirp app</title>
+    <meta name="description" content="Every Chirp trade, holder and number, read from Base. Buy and sell Chirp for Pinto." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Surco" />
+    <meta property="og:title" content="Chirp app — every trade, every holder" />
+    <meta property="og:description" content="Chirp is a coin on Base backed by Pinto in the silo. Silo yield buys Chirp back and burns it. No owner, no pause, no upgrade." />
+    <meta property="og:url" content="https://surcofi.com/chirp" />
+    <meta property="og:image" content="https://surcofi.com/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@chirpfi" />
+    <meta name="twitter:title" content="Chirp app — every trade, every holder" />
+    <meta name="twitter:description" content="Chirp is a coin on Base backed by Pinto in the silo. Silo yield buys Chirp back and burns it. No owner, no pause, no upgrade." />
+    <meta name="twitter:image" content="https://surcofi.com/og.jpg" />
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/shop.css" />
+    <script src="/theme.js"></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <svg class="scene-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <circle class="sun" cx="1150" cy="180" r="46" fill="var(--sun)" />
+        <path class="bird" d="M250 150 q12 -10 24 0 q12 -10 24 0" fill="none" stroke="var(--ink-soft)" stroke-width="2.4" stroke-linecap="round" />
+        <path class="bird" d="M330 120 q9 -8 18 0 q9 -8 18 0" fill="none" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round" />
+        <path d="M0 560 C360 500 1080 600 1440 540 L1440 900 0 900 Z" fill="var(--hill-far)" />
+        <path d="M0 660 C420 600 1020 700 1440 640 L1440 900 0 900 Z" fill="var(--hill-mid)" />
+        <path d="M0 760 C480 700 980 800 1440 740 L1440 900 0 900 Z" fill="var(--hill-near)" />
+        <path d="M0 820 C480 770 980 860 1440 800 L1440 900 0 900 Z" fill="var(--field)" />
+        <g class="furrows" fill="none" stroke="var(--furrow)" stroke-width="2" opacity=".55" stroke-linecap="round">
+          <path d="M120 900 C500 850 940 850 1320 900" />
+          <path d="M40 900 C480 840 960 840 1400 900" />
+          <path d="M260 900 C560 860 900 860 1200 900" />
+        </g>
+      </svg>
+      <div class="grain"></div>
+    </div>
+
+
+    <header class="nav" id="nav">
+      <a class="brand" href="/" aria-label="Surco home">
+        <img class="brand-mark" src="/mark.svg" alt="" width="48" height="48" />
+        <span class="brand-name">Surco</span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="/">Coins</a>
+        <a href="/launch">Launch</a>
+        <a href="/stake">Stake</a>
+        <a href="/creator">Creator</a>
+        <a href="/chirp" aria-current="page">Chirp</a>
+        <a href="/pinto">Pinto</a>
+        <a href="/docs">Docs</a>
+      </nav>
+      <div class="nav-cta">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Day or night">
+          <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
+          <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
+        </button>
+        <a class="theme-toggle nav-x" href="https://x.com/chirpfi" target="_blank" rel="noopener" aria-label="Chirp on X" title="@chirpfi on X"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <span class="net-pill">Base</span>
+        <span id="nav-bal" class="wallet-pill" hidden></span>
+        <button id="connect" class="btn btn-ghost" type="button">Connect wallet</button>
+        <a class="btn btn-primary" href="#trade">Buy Chirp</a>
+      </div>
+      <button class="nav-burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+    </header>
+
+    <main id="top" class="app">
+      <section class="section app-head">
+        <div class="sec-head">
+          <span class="kicker">Flagship coin · One-sided Pinto Silo book</span>
+          <h2>Chirp (CHIRP)</h2>
+          <p class="lead">1,000,000,000 minted once on Base. Every buy deposits Pinto straight into the Silo; sells withdraw immediately; Silo yield buys Chirp back and burns it. No owner, no pause, no upgrade. <a href="/" style="text-decoration:underline;">← All coins</a> · <a href="/stake" style="text-decoration:underline;">Stake Chirp</a></p>
+        </div>
+        <div class="app-stats">
+          <div class="card fstat"><span class="stat-k">Chirp price</span><span class="stat-v" id="hero-usd">—</span></div>
+          <div class="card fstat"><span class="stat-k">Fully diluted value</span><span class="stat-v" id="hero-cap">—</span></div>
+          <div class="card fstat"><span class="stat-k">Pinto behind it</span><span class="stat-v" id="hero-backing">—</span></div>
+          <div class="card fstat"><span class="stat-k">Holders</span><span class="stat-v" id="s-holders">—</span></div>
+          <div class="card fstat"><span class="stat-k">Trades</span><span class="stat-v fsmall" id="s-trades">—</span></div>
+          <div class="card fstat"><span class="stat-k">Wallets that traded</span><span class="stat-v" id="s-wallets">—</span></div>
+          <div class="card fstat"><span class="stat-k">Pinto traded</span><span class="stat-v fsmall" id="s-volume">—</span></div>
+        </div>
+        <span id="price" hidden>0.01</span>
+        <p class="stats-note" id="shelf" hidden></p>
+      </section>
+
+      <section class="section" id="shop">
+        <div class="trade-wrap">
+          <form class="swapcard" id="trade">
+            <div class="swap-head">
+              <span>Swap</span>
+              <span class="swap-net">Open on Base</span>
+            </div>
+            <div class="sides" role="tablist" aria-label="Buy or sell">
+              <button id="side-buy" type="button" role="tab" aria-selected="true">Buy</button>
+              <button id="side-sell" type="button" role="tab" aria-selected="false">Sell</button>
+            </div>
+            <label class="coin-row">
+              <span id="coin-label">Pay with</span>
+              <select id="coin">
+                <option value="eth" selected>ETH</option>
+                <option value="usdc">USDC</option>
+                <option value="pinto">Pinto</option>
+                <option value="cbeth">cbETH</option>
+                <option value="cbbtc">cbBTC</option>
+              </select>
+            </label>
+            <div class="pay">
+              <div class="sf-top">
+                <label for="amount">You pay</label>
+                <span><span id="bal"></span> <button id="max" type="button">Max</button></span>
+              </div>
+              <div class="pay-row">
+                <input id="amount" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="0" />
+                <span id="pay-token">Pinto</span>
+              </div>
+            </div>
+            <p class="receive">You get <strong id="out">0</strong> <span id="get-token">Chirp</span></p>
+            <p id="route" hidden></p>
+            <p id="fee"></p>
+            <p id="warn" class="warn" hidden></p>
+            <button id="go" type="submit" disabled>Buy Chirp</button>
+            <details>
+              <summary id="slip-note">If the price moves more than 1%, the trade stops</summary>
+              <label class="slip">
+                Slippage
+                <select id="slip">
+                  <option value="50">0.5%</option>
+                  <option value="100" selected>1%</option>
+                  <option value="300">3%</option>
+                </select>
+              </label>
+            </details>
+            <p id="hold"></p>
+            <p id="status" role="status"></p>
+          </form>
+          <div class="market" id="price-path">
+            <span class="kicker">Chirp price</span>
+            <div class="chart-head">
+              <p class="chart-price" id="chart-price">—</p>
+              <span class="chart-change flat" id="chart-change">—</span>
+            </div>
+            <p class="market-usd" id="usd">The dollar price shows when Pinto's price can be read.</p>
+            <span id="mkt-price" hidden>0.01</span>
+            <div class="chart-controls">
+              <div class="seg" role="group" aria-label="Time range">
+                <button type="button" class="range" data-range="1h" aria-pressed="false">1H</button>
+                <button type="button" class="range" data-range="24h" aria-pressed="true">24H</button>
+                <button type="button" class="range" data-range="7d" aria-pressed="false">7D</button>
+                <button type="button" class="range" data-range="all" aria-pressed="false">All</button>
+              </div>
+              <div class="seg" role="group" aria-label="Price in">
+                <button type="button" class="unit" data-unit="usd" aria-pressed="true">USD</button>
+                <button type="button" class="unit" data-unit="pinto" aria-pressed="false">Pinto</button>
+              </div>
+            </div>
+            <div class="chart" id="chart" role="img" aria-label="Chirp's price over the selected time range."></div>
+            <p class="market-note" id="chart-note">Reading the price history from Base…</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <span class="kicker">Activity</span>
+          <h2>Every buy, sell, buyback, sow and harvest</h2>
+          <p class="lead">Buybacks are the silo's yield buying Chirp and burning it. They are not counted as trades.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="ledger" id="activity">
+            <thead><tr><th>When</th><th>What</th><th>Wallet</th><th class="num">Pinto</th><th class="num">Chirp</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="market-note" id="activity-empty">No trades yet.</p>
+        <button class="btn btn-ghost" id="activity-more" type="button" hidden>Load more</button>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <span class="kicker">Holders</span>
+          <h2>Who holds Chirp</h2>
+          <p class="lead" id="holder-count">Reading holders from Base…</p>
+        </div>
+        <div class="table-wrap">
+          <table class="ledger" id="holders">
+            <thead><tr><th class="num">#</th><th>Wallet</th><th class="num">Chirp</th><th class="num">Share</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="field">
+        <div class="sec-head">
+          <span class="kicker">The field</span>
+          <h2>What the silo is growing</h2>
+          <p class="lead">Every number here is read from Base. Anyone can run the upkeep below; nobody is paid to.</p>
+        </div>
+        <div class="field-grid">
+          <div class="card fstat"><span class="stat-k">In the silo</span><span class="stat-v" id="f-silo">—</span><span class="fnote">Pinto from every buy, deposited</span></div>
+          <div class="card fstat"><span class="stat-k">Stalk</span><span class="stat-v" id="f-stalk">—</span><span class="fnote">Earns a share of Pinto's yield</span></div>
+          <div class="card fstat"><span class="stat-k">Stalk grown</span><span class="stat-v" id="f-grown">—</span><span class="fnote">Added to Stalk at the next claim</span></div>
+          <div class="card fstat"><span class="stat-k">Yield waiting</span><span class="stat-v" id="f-yield">—</span><span class="fnote">The next claim buys Chirp with it and burns it</span></div>
+          <div class="card fstat"><span class="stat-k">Chirp burned</span><span class="stat-v" id="f-burned">—</span><span class="fnote">Gone from the 1 billion for good</span></div>
+          <div class="card fstat"><span class="stat-k">Sow pile</span><span class="stat-v" id="f-pile">—</span><span class="fnote">Pinto from sell fees, waiting to be sown</span></div>
+          <div class="card fstat"><span class="stat-k">Sowing</span><span class="stat-v fsmall" id="f-sow">—</span><span class="fnote">The pile is sown only below peg at max temperature</span></div>
+          <div class="card fstat"><span class="stat-k">In the field</span><span class="stat-v" id="f-plots">—</span><span class="fnote">Ready to harvest: <b id="f-ripe">—</b></span></div>
+        </div>
+        <div class="field-actions">
+          <button class="btn btn-ghost" id="do-claim" type="button" disabled>Claim yield &amp; burn</button>
+          <button class="btn btn-ghost" id="do-sow" type="button" disabled>Sow the pile</button>
+          <button class="btn btn-ghost" id="do-harvest" type="button" disabled>Harvest</button>
+        </div>
+        <p id="field-status" class="field-status" role="status"></p>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <span class="kicker">Contracts</span>
+          <h2>Check them yourself</h2>
+        </div>
+        <p class="foot-tag foot-contract">
+          Chirp token<br /><a class="mono" href="https://basescan.org/token/0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13" target="_blank" rel="noopener">0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13</a> <a class="verified" href="https://basescan.org/address/0x4D2D8C1E1c8239Ca56Db7612C9Efe5d6a1a2ea13#code" target="_blank" rel="noopener">Verified source</a><br />
+          Book<br /><a class="mono" href="https://basescan.org/address/0x10b919A89a5ABfecEBd805836DA174F02B023756" target="_blank" rel="noopener">0x10b919A89a5ABfecEBd805836DA174F02B023756</a> <a class="verified" href="https://basescan.org/address/0x10b919A89a5ABfecEBd805836DA174F02B023756#code" target="_blank" rel="noopener">Verified source</a><br />
+          Shop hook<br /><a class="mono" href="https://basescan.org/address/0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8" target="_blank" rel="noopener">0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8</a> <a class="verified" href="https://basescan.org/address/0x91b48A16f0d78CA7eAe464865F9Bec753Cb72AE8#code" target="_blank" rel="noopener">Verified source</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-bot">
+        <span>© 2026 Surco · <a href="https://github.com/Surco-org/surco" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/chirpfi" target="_blank" rel="noopener">@chirpfi on X</a> · <a href="https://x.com/intent/post?text=Chirp%3A%20a%20coin%20on%20Base%20backed%20by%20Pinto%20in%20the%20silo.%20Silo%20yield%20buys%20it%20back%20and%20burns%20it.%20%40chirpfi&amp;url=https%3A%2F%2Fsurcofi.com%2F" target="_blank" rel="noopener">Share on X</a> · <button class="foot-copy" id="copyLink" type="button" data-copy="https://surcofi.com/">Copy link</button> · <a href="/docs">Docs</a> · <a href="/pinto">What is Pinto</a> · <a href="/press">Press kit</a></span>
+        <span class="foot-disc">Chirp is live on Base. The contracts have no owner, no pause and no upgrade.</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/page.js"></script>
+    <script type="module" src="/shop.js"></script>
+    <script type="module" src="/market.js"></script>
+    <script type="module" src="/field.js"></script>
+    <script type="module" src="/activity.js"></script>
+    <script type="module" src="/holders.js"></script>
+    <script type="module" src="/chart.js"></script>
+  </body>
+</html>

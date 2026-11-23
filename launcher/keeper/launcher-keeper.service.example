@@ -1,0 +1,24 @@
+[Unit]
+Description=Surco Launcher Keeper — daily seed/convert/buyback upkeep
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=surco
+Nice=10
+MemoryMax=96M
+TimeoutStartSec=2h
+EnvironmentFile=/opt/surco-keeper/.env
+Environment=STATE=/opt/surco-keeper/state.json
+Environment=FACTORY=0xf3A050114d4310beF64660a68332169Eb76D0d70
+Environment=FACTORY_BLOCK=60614593
+Environment=COLLECTIVE_SILO=0x1e050aDAC1011bcCeEf66FA485331fAaFA9Ad064
+Environment=VE_CHIRP=0x7b817Bd8773b5CaAE267e9cc43FEdbceF148F0ed
+# Optional Telegram alerts:
+# Environment=TELEGRAM_CHAT_ID=<your-chat-id>
+# LoadCredential=telegram_token:/etc/surco/telegram_token
+ExecStart=/opt/surco-keeper/venv/bin/python /opt/surco-keeper/keeper.py
+NoNewPrivileges=yes
+ProtectSystem=full
+ReadWritePaths=/opt/surco-keeper
